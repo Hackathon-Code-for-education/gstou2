@@ -139,3 +139,35 @@
  *       500:
  *         description: Внутренняя ошибка сервера
  */
+
+/**
+ * @swagger
+ * /user/{id}:
+ *   patch:
+ *     summary: Обновить данные пользователя
+ *     tags: [User]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Идентификатор пользователя
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: Данные пользователя успешно обновлены
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       404:
+ *         description: Пользователь не найден
+ *       500:
+ *         description: Внутренняя ошибка сервера
+ */
