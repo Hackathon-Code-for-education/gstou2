@@ -28,6 +28,12 @@ const universitySchema = mongoose.Schema({
     mail: String,
     phone: String,
   },
+  reviews: [
+    {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "Reviews",
+    },
+  ],
 });
 
 const University = mongoose.model("University", universitySchema);

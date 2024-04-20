@@ -55,11 +55,12 @@
  *             phone:
  *               type: string
  *               description: Телефон приемной комиссии университета
+ *         reviews
+ *           type: string
+ *           description: Идентификатор общежития университета
  *       required:
  *         - name
  *         - email
- *         - siteUrl
- *         - selectionCommittee
  */
 
 /**
