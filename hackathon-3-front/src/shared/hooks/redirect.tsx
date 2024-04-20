@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 export const Redirect = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    navigate('/main');
+    const token = localStorage.getItem('token');
+    navigate(token ? '/main' : '/signIn');
   }, []);
   return <div></div>;
 };
