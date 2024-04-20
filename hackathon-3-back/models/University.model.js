@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const universitySchema = mongoose.Schema({
   name: String,
-  Image: [],
+  image: [],
   email: String,
   siteUrl: String,
   news: [
@@ -31,7 +31,7 @@ const universitySchema = mongoose.Schema({
   reviews: [
     {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: "Reviews",
+      ref: "Review",
     },
   ],
 });
