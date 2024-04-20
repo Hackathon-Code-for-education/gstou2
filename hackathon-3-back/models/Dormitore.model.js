@@ -9,6 +9,12 @@ const dormitoreSchema = mongoose.Schema({
         }
     ],
     rating: Number,
+    reviews: [
+        {
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: 'Review'
+        }
+    ],
 });
 
 const Dormitore = mongoose.model("Dormitore", dormitoreSchema);
