@@ -55,11 +55,7 @@ module.exports.universityController = {
 
   getAllUniversity: async (req, res) => {
     try {
-      const universities = await University.find()
-        .populate("news")
-        .populate("institute")
-        .populate("dormitory")
-        .populate("reviews");
+      const universities = await University.find();
 
       res.json(universities);
     } catch (error) {
