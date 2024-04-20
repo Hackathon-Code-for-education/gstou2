@@ -11,16 +11,31 @@
  *   schemas:
  *     User:
  *       type: object
- *       required:
- *         - login
- *         - password
  *       properties:
+ *         _id:
+ *           type: string
+ *           description: Уникальный идентификатор пользователя
+ *         name:
+ *           type: string
+ *           description: Имя пользователя
  *         login:
  *           type: string
  *           description: Логин пользователя
  *         password:
  *           type: string
- *           description: Пароль пользователя
+ *           description: Хэш пароля пользователя
+ *         role:
+ *           type: string
+ *           description: Роль пользователя
+ *         showName:
+ *           type: boolean
+ *           description: Флаг отображения имени пользователя
+ *         raiting:
+ *           type: number
+ *           description: Рейтинг пользователя
+ *       required:
+ *         - login
+ *         - password
  */
 
 /**
@@ -42,8 +57,6 @@
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
- *       400:
- *         description: Неверный запрос
  *       500:
  *         description: Внутренняя ошибка сервера
  */
@@ -59,7 +72,15 @@
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/User'
+ *             type: object
+ *             properties:
+ *               login:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *             required:
+ *               - login
+ *               - password
  *     responses:
  *       200:
  *         description: Пользователь успешно вошел в систему
