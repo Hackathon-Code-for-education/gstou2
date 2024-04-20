@@ -36,6 +36,8 @@ app.use(express.static(path.resolve(__dirname, "public")));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.use(require("./routes/user.route"));
+app.use(require("./routes/institute.route"));
+app.use(require("./routes/review.route"));
 
 const start = async () => {
   try {
