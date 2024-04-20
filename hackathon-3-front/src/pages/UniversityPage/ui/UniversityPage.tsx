@@ -1,5 +1,5 @@
 import { useUniversityServiceGetUniversityById } from '@/shared/api/openApi/queries';
-import { Title } from 'gentlemen-ui-kit';
+import { Title, Text, Flex } from 'gentlemen-ui-kit';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -11,11 +11,13 @@ export const UniversityPage = () => {
     return <></>;
   }
 
-  console.log(data);
-
   return (
-    <div>
+    <Flex vertical gap={8} style={{ width: '350px', borderRadius: '8px', }}>
+      <Title level={2}>Информация об Университете</Title>
       <Title level={5}>{data?.name}</Title>
-    </div>
+      <Text>{data?.email}</Text>
+      <Text>{data?.siteUrl}</Text>
+      <Text>{data?.institute}</Text>
+    </Flex>
   );
 };
