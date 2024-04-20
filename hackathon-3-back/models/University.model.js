@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const universitySchema = mongoose.Schema({
   name: String,
-  Image: [],
+  image: [],
   email: String,
   siteUrl: String,
   news: [
