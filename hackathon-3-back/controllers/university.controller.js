@@ -13,6 +13,7 @@ module.exports.universityController = {
         dormitory,
         docsImg,
         selectionCommittee,
+        reviews,
       } = req.body;
 
       const university = await University.create({
@@ -25,6 +26,7 @@ module.exports.universityController = {
         dormitory,
         docsImg,
         selectionCommittee,
+        reviews,
       });
 
       res.json(university);
@@ -57,6 +59,7 @@ module.exports.universityController = {
         dormitory,
         docsImg,
         selectionCommittee,
+        reviews,
       } = req.body;
 
       const updatedUniversity = await University.findByIdAndUpdate(
@@ -71,6 +74,7 @@ module.exports.universityController = {
           dormitory,
           docsImg,
           selectionCommittee,
+          reviews,
         },
         { new: true }
       ).populate("news institute dormitory");
