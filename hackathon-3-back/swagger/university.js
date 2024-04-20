@@ -55,7 +55,7 @@
  *             phone:
  *               type: string
  *               description: Телефон приемной комиссии университета
- *         reviews
+ *         reviews:
  *           type: string
  *           description: Идентификатор общежития университета
  *       required:
