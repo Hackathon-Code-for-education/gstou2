@@ -12,7 +12,6 @@ module.exports.dormitoreController = {
     },
 
     createDormitore: async (req, res) => {
-        console.log(req)
         try {
 
             const {
@@ -21,18 +20,18 @@ module.exports.dormitoreController = {
                 image,
                 rating,
             } = req.body;
-console.log(title,description,image,rating);
+
             const data = await Dormitore.create({
                 title,
                 description,
                 image,
                 rating,
-            });
+            }).populate("reviews");
 
             res.json(data);
 
         } catch (error) {
-            res.json(error, 'asdfasdqwe');
+            res.json(error);
         }
     }
 
