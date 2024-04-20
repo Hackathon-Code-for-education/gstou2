@@ -53,6 +53,20 @@ module.exports.universityController = {
     }
   },
 
+  getAllUniversity: async (req, res) => {
+    try {
+      const universities = await University.find()
+        .populate("news")
+        .populate("institute")
+        .populate("dormitory")
+        .populate("reviews");
+
+      res.json(universities);
+    } catch (error) {
+      res.status(500).json({ error: "Internal server error" });
+    }
+  },
+
   patchUniversity: async (req, res) => {
     try {
       const {

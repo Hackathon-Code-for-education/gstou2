@@ -12,6 +12,7 @@ router.post(
   universityController.registerUniversity
 );
 router.get("/university/:id", universityController.getUniversity);
+router.get("/university", universityController.getAllUniversity);
 router.patch(
   "/university/:id",
   productUpload.array("image"),
