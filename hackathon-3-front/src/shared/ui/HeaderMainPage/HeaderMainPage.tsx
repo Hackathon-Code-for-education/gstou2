@@ -72,12 +72,13 @@ export const HeaderMainPage = () => {
 
 const Content = styled.div`
   width: 100%;
-  display: flex;
+  margin: auto;
   background-color: black;
 `;
 
 const Wrapper = styled.div`
-background-color: black;
+margin: auto;
+  background-color: black;
   display: flex;
   align-items: start;
   gap: 20px;
