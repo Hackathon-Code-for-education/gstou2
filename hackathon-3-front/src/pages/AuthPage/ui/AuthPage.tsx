@@ -8,7 +8,7 @@ export const AuthPage = () => {
   return (
     <div className={styles.authPage}>
       <AuthForm />
-      <AuthCarousel />
+      {/* <AuthCarousel /> */}
     </div>
   );
 };
