@@ -35,6 +35,8 @@ app.use(morgan("dev"));
 app.use(express.static(path.resolve(__dirname, "public")));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
+app.use("/images", express.static("images"));
+
 app.use(require("./routes/user.route"));
 
 const start = async () => {

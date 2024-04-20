@@ -4,11 +4,11 @@ const jwt = require("jsonwebtoken");
 
 module.exports.userController = {
   registerUser: async (req, res) => {
-    const { login, password } = req.body;
+    const { name, login, password } = req.body;
 
     const hash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS));
 
-    const user = await User.create({ login: login, password: hash });
+    const user = await User.create({ name, login, password: hash });
 
     res.json(user);
   },
