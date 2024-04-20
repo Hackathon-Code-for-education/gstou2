@@ -9,6 +9,8 @@ const getDestination = (type) => {
       return "images/users";
     case "university":
       return "images/university";
+    case "institute":
+      return "images/institute";
   }
 };
 

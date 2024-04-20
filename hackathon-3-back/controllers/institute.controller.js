@@ -3,7 +3,7 @@ const Institute = require("../models/Institute.model");
 module.exports.instituteController = {
   getInstitutes: async (req, res) => {
     try {
-      const data = await Institute.find().populate("University");
+      const data = await Institute.find().populate("reviews");
 
       res.json(data);
     } catch (error) {
@@ -27,7 +27,7 @@ module.exports.instituteController = {
         image
       });
 
-      const data = await institute.populate("University");
+      const data = await institute.populate("reviews");
 
       res.json(data);
     } catch (error) {

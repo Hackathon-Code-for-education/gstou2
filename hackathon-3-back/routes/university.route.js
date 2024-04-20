@@ -3,6 +3,7 @@ const router = Router();
 const {
   universityController,
 } = require("../controllers/university.controller");
+const createMulter = require("../middleware/image.middleware");
 const productUpload = createMulter("university");
 
 router.post(
