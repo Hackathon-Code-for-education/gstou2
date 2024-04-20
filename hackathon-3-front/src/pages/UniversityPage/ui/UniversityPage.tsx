@@ -1,23 +1,24 @@
+import { ProjectInfoBlock } from '@/entities/ProjectInfoBlock';
 import { useUniversityServiceGetUniversityById } from '@/shared/api/openApi/queries';
-import { Title, Text, Flex } from 'gentlemen-ui-kit';
-import { useEffect } from 'react';
+import { ImageUpload } from '@/shared/ui/ImageUpload/ImageUpload';
+import { Flex, Slider } from 'gentlemen-ui-kit';
 import { useParams } from 'react-router-dom';
+import styles from './universityPage.module.scss';
 
 export const UniversityPage = () => {
   const { id } = useParams();
-  const { data, isLoading } = useUniversityServiceGetUniversityById({ id: id as string });
+  const { data, isLoading, isError } = useUniversityServiceGetUniversityById({ id: id as string });
 
-  if (isLoading) {
+  if (isLoading || isError || !data) {
     return <></>;
   }
 
   return (
-    <Flex vertical gap={8} style={{ width: '350px', borderRadius: '8px', }}>
-      <Title level={2}>Информация об Университете</Title>
-      <Title level={5}>{data?.name}</Title>
-      <Text>{data?.email}</Text>
-      <Text>{data?.siteUrl}</Text>
-      <Text>{data?.institute}</Text>
-    </Flex>
+    <div className={styles.universityPage}>
+      <Flex vertical gap={12}>
+        <ImageUpload img="" title="Изменить фото" />
+        <ProjectInfoBlock data={data} title={data?.name} />
+      </Flex>
+    </div>
   );
 };
