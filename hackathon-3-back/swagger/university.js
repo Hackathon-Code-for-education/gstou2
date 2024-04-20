@@ -18,7 +18,7 @@
  *         name:
  *           type: string
  *           description: Название университета
- *         Image:
+ *         image:
  *           type: array
  *           items:
  *             type: string
@@ -38,8 +38,8 @@
  *         institute:
  *           type: array
  *           items:
- *             type: string
- *           description: Список идентификаторов институтов университета
+ *             $ref: '#/components/schemas/Institute'
+ *           description: Список институтов университета
  *         dormitory:
  *           type: string
  *           description: Идентификатор общежития университета
@@ -101,6 +101,32 @@
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/University'
+ *       500:
+ *         description: Внутренняя ошибка сервера
+ */
+
+/**
+ * @swagger
+ * /university/{id}:
+ *   get:
+ *     summary: Получить университет по идентификатору
+ *     tags: [University]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Идентификатор университета
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Возвращает университет
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/University'
+ *       404:
+ *         description: Университет не найден
  *       500:
  *         description: Внутренняя ошибка сервера
  */
