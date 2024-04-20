@@ -11,6 +11,8 @@ const getDestination = (type) => {
       return "images/topical";
       case "news":
         return "images/news"
+    case "university":
+      return "images/university";
   }
 };
 

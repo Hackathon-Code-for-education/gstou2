@@ -46,4 +46,48 @@ module.exports.userController = {
     const data = await User.findOne();
     res.json(data);
   },
+
+  patchUser: async (req, res) => {
+    const {
+      name,
+      nikname,
+      login,
+      password,
+      role,
+      photo,
+      instituteId,
+      raiting,
+      showName,
+      passport,
+      myMessage,
+      favorite,
+    } = req.body;
+
+    try {
+      // const photo = req.files && req.files[0] ? req.files[0].path : "";
+
+      const data = await User.findByIdAndUpdate(
+        req.params.id,
+        {
+          name,
+          nikname,
+          login,
+          password,
+          role,
+          photo,
+          instituteId,
+          raiting,
+          showName,
+          passport,
+          myMessage,
+          favorite,
+        },
+        { new: true }
+      ).populate("institute favorite");
+
+      res.json(data);
+    } catch (error) {
+      return res.status(404).json(error.toString());
+    }
+  },
 };
