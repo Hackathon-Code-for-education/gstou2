@@ -7,7 +7,7 @@ const userSchema = mongoose.Schema({
   password: String,
   role: String,
   photo: String,
-  instituteId: {
+  institute: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "Institute",
   },
