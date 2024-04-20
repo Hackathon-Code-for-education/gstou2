@@ -107,6 +107,25 @@
 
 /**
  * @swagger
+ * /university:
+ *   get:
+ *     summary: Получить список университетов
+ *     tags: [University]
+ *     responses:
+ *       200:
+ *         description: Возвращает список университетов
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/University'
+ *       500:
+ *         description: Внутренняя ошибка сервера
+ */
+
+/**
+ * @swagger
  * /university/{id}:
  *   get:
  *     summary: Получить университет по идентификатору
