@@ -7,8 +7,8 @@ const getDestination = (type) => {
       return "images/products";
     case "users":
       return "images/users";
-    case "topical":
-      return "images/topical";
+    case "university":
+      return "images/university";
   }
 };
 

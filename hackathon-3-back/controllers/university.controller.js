@@ -5,7 +5,6 @@ module.exports.universityController = {
     try {
       const {
         name,
-        Image,
         email,
         siteUrl,
         news,
@@ -16,9 +15,18 @@ module.exports.universityController = {
         reviews,
       } = req.body;
 
+      const photo = [];
+
+      if (req.files && req.files.length > 0) {
+        for (let i = 0; i < req.files.length; i++) {
+          const photoPath = req.files[i].path;
+          photo.push(photoPath);
+        }
+      }
+
       const university = await University.create({
         name,
-        Image,
+        image: photo,
         email,
         siteUrl,
         news,
@@ -51,7 +59,6 @@ module.exports.universityController = {
     try {
       const {
         name,
-        Image,
         email,
         siteUrl,
         news,
@@ -62,11 +69,20 @@ module.exports.universityController = {
         reviews,
       } = req.body;
 
+      const photo = [];
+
+      if (req.files && req.files.length > 0) {
+        for (let i = 0; i < req.files.length; i++) {
+          const photoPath = req.files[i].path;
+          photo.push(photoPath);
+        }
+      }
+
       const updatedUniversity = await University.findByIdAndUpdate(
         req.params.id,
         {
           name,
-          Image,
+          image: photo,
           email,
           siteUrl,
           news,
