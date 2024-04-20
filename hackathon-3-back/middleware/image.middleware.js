@@ -13,6 +13,8 @@ const getDestination = (type) => {
         return "images/news"
     case "university":
       return "images/university";
+    case "institute":
+      return "images/institute";
   }
 };
 
