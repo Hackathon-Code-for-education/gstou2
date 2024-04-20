@@ -39,6 +39,8 @@ app.use("/images", express.static("images"));
 
 app.use(require("./routes/user.route"));
 app.use(require('./routes/dormitore.route'));
+app.use(require("./routes/university.route"));
+
 
 const start = async () => {
   try {
