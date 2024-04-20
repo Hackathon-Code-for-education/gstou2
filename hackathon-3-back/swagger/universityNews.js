@@ -29,7 +29,7 @@
  *         reviews:
  *           type: array
  *           items:
- *             type: string
+ *             $ref: '#/components/schemas/Review'
  *           description: Список идентификаторов отзывов к новости
  *       required:
  *         - title

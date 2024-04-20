@@ -32,7 +32,7 @@
  *         reviews:
  *           type: array
  *           items:
- *             type: string
+ *             $ref: '#/components/schemas/Review'
  *           description: Список идентификаторов отзывов об институте
  *       required:
  *         - title
