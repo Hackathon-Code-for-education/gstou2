@@ -8,13 +8,13 @@ const productUpload = createMulter("university");
 
 router.post(
   "/university",
-  productUpload.array("photo"),
+  productUpload.array("image"),
   universityController.registerUniversity
 );
 router.get("/university", universityController.getUniversity);
 router.patch(
   "/university/:id",
-  productUpload.array("photo"),
+  productUpload.array("image"),
   universityController.patchUniversity
 );
 

@@ -7,6 +7,10 @@ const getDestination = (type) => {
       return "images/products";
     case "users":
       return "images/users";
+    case "topical":
+      return "images/topical";
+      case "news":
+        return "images/news"
     case "university":
       return "images/university";
     case "institute":
