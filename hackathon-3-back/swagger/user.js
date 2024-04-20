@@ -11,16 +11,53 @@
  *   schemas:
  *     User:
  *       type: object
- *       required:
- *         - login
- *         - password
  *       properties:
+ *         _id:
+ *           type: string
+ *           description: Уникальный идентификатор пользователя
+ *         name:
+ *           type: string
+ *           description: Имя пользователя
+ *         nikname:
+ *           type: string
+ *           description: Никнейм пользователя
  *         login:
  *           type: string
  *           description: Логин пользователя
  *         password:
  *           type: string
- *           description: Пароль пользователя
+ *           description: Хэш пароля пользователя
+ *         role:
+ *           type: string
+ *           description: Роль пользователя
+ *         photo:
+ *           type: string
+ *           description: Ссылка на фотографию пользователя
+ *         instituteId:
+ *           type: string
+ *           description: Идентификатор института пользователя
+ *         raiting:
+ *           type: number
+ *           description: Рейтинг пользователя
+ *         showName:
+ *           type: boolean
+ *           description: Флаг отображения имени пользователя
+ *         passport:
+ *           type: string
+ *           description: Паспортные данные пользователя
+ *         myMessage:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Массив сообщений пользователя
+ *         favorite:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Массив избранных институтов пользователя
+ *       required:
+ *         - login
+ *         - password
  */
 
 /**
@@ -42,8 +79,6 @@
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
- *       400:
- *         description: Неверный запрос
  *       500:
  *         description: Внутренняя ошибка сервера
  */
@@ -59,7 +94,15 @@
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/User'
+ *             type: object
+ *             properties:
+ *               login:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *             required:
+ *               - login
+ *               - password
  *     responses:
  *       200:
  *         description: Пользователь успешно вошел в систему
@@ -93,6 +136,38 @@
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
+ *       500:
+ *         description: Внутренняя ошибка сервера
+ */
+
+/**
+ * @swagger
+ * /user/{id}:
+ *   patch:
+ *     summary: Обновить данные пользователя
+ *     tags: [User]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Идентификатор пользователя
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: Данные пользователя успешно обновлены
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       404:
+ *         description: Пользователь не найден
  *       500:
  *         description: Внутренняя ошибка сервера
  */

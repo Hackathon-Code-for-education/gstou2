@@ -4,11 +4,11 @@ const jwt = require("jsonwebtoken");
 
 module.exports.userController = {
   registerUser: async (req, res) => {
-    const { login, password } = req.body;
+    const { name, login, password } = req.body;
 
     const hash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS));
 
-    const user = await User.create({ login: login, password: hash });
+    const user = await User.create({ name, login, password: hash });
 
     res.json(user);
   },
@@ -45,5 +45,49 @@ module.exports.userController = {
   getUser: async (req, res) => {
     const data = await User.findOne();
     res.json(data);
+  },
+
+  patchUser: async (req, res) => {
+    const {
+      name,
+      nikname,
+      login,
+      password,
+      role,
+      photo,
+      instituteId,
+      raiting,
+      showName,
+      passport,
+      myMessage,
+      favorite,
+    } = req.body;
+
+    try {
+      // const photo = req.files && req.files[0] ? req.files[0].path : "";
+
+      const data = await User.findByIdAndUpdate(
+        req.params.id,
+        {
+          name,
+          nikname,
+          login,
+          password,
+          role,
+          photo,
+          instituteId,
+          raiting,
+          showName,
+          passport,
+          myMessage,
+          favorite,
+        },
+        { new: true }
+      ).populate("institute favorite");
+
+      res.json(data);
+    } catch (error) {
+      return res.status(404).json(error.toString());
+    }
   },
 };

@@ -1,12 +1,17 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { MainPage } from './pages/MainPage';
 import { AuthPage } from './pages/AuthPage';
 import '@/app/axios/axiosDefault';
+import { Redirect } from './shared/hooks/redirect';
+import { MainPage } from './pages/MainPage';
 
 function App() {
   const routes = createBrowserRouter([
     {
       path: '/',
+      element: <Redirect />,
+    },
+    {
+      path: '/main',
       element: <MainPage />,
     },
     {

@@ -20,8 +20,8 @@ export const AuthForm = () => {
   const signUp = useUserServicePostUser();
 
   const formik = useFormik({
-    initialValues: { login: '', password: '', rememberMe: false },
-    onSubmit: async ({ login, password }) => {
+    initialValues: { login: '', password: '', rememberMe: false, name: '' },
+    onSubmit: async ({ login, password, name }) => {
       try {
         let data;
         if (pageSignIn) {
@@ -36,6 +36,7 @@ export const AuthForm = () => {
             requestBody: {
               login,
               password,
+              name,
             },
           });
         }
@@ -73,6 +74,17 @@ export const AuthForm = () => {
         </Flex>
         <Form>
           <Flex vertical gap={24}>
+            {!pageSignIn && (
+              <Flex vertical>
+                <Text>Как к вам обращаться ?</Text>
+                <Input
+                  status={formik.errors.login === 'error' ? 'error' : ''}
+                  type="text"
+                  placeholder="Введите почту"
+                  {...formik.getFieldProps('name')}
+                />
+              </Flex>
+            )}
             <Flex vertical>
               <Text>Почта</Text>
               <Input
