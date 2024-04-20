@@ -31,7 +31,7 @@ const universitySchema = mongoose.Schema({
   reviews: [
     {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: "Reviews",
+      ref: "Review",
     },
   ],
 });
