@@ -41,6 +41,7 @@ export const ImageUpload: FC<ImageUpload> = ({ img, title }) => {
         height={400}
         src={img || placeholderImage}
         alt="building"
+        className={styles.image}
       />
       {mouseMove && (
         <div className={styles.uploadBlock} onClick={() => uploadRef.current?.click()}>

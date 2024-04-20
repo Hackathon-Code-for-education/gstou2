@@ -38,8 +38,8 @@
  *         institute:
  *           type: array
  *           items:
- *             type: string
- *           description: Список идентификаторов институтов университета
+ *             $ref: '#/components/schemas/Institute'
+ *           description: Список институтов университета
  *         dormitory:
  *           type: string
  *           description: Идентификатор общежития университета

@@ -6,6 +6,9 @@
   border: 0.5px solid rgba(97, 97, 122, 0.24);
   background: linear-gradient(180deg, #fff 0%, #f7f7f7 100%);
   text-align: center;
+  .image {
+    object-fit: cover;
+  }
   .uploadBlock {
     position: absolute;
     top: 0;
