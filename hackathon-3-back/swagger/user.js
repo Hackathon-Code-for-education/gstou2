@@ -18,6 +18,9 @@
  *         name:
  *           type: string
  *           description: Имя пользователя
+ *         nikname:
+ *           type: string
+ *           description: Никнейм пользователя
  *         login:
  *           type: string
  *           description: Логин пользователя
@@ -27,12 +30,31 @@
  *         role:
  *           type: string
  *           description: Роль пользователя
- *         showName:
- *           type: boolean
- *           description: Флаг отображения имени пользователя
+ *         photo:
+ *           type: string
+ *           description: Ссылка на фотографию пользователя
+ *         instituteId:
+ *           type: string
+ *           description: Идентификатор института пользователя
  *         raiting:
  *           type: number
  *           description: Рейтинг пользователя
+ *         showName:
+ *           type: boolean
+ *           description: Флаг отображения имени пользователя
+ *         passport:
+ *           type: string
+ *           description: Паспортные данные пользователя
+ *         myMessage:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Массив сообщений пользователя
+ *         favorite:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Массив избранных институтов пользователя
  *       required:
  *         - login
  *         - password
