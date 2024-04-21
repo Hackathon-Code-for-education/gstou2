@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './chatmessage.module.scss';
 // import { socket } from '../ChatForm/ChatForm';
 import {
+  useUniversityServiceGetUniversity,
   useUniversityServiceGetUniversityById,
   useUniversityServiceGetUniversityKey,
   useUniversityServicePostUniversityAddCommentById,
@@ -12,23 +13,21 @@ import {
   useUserServiceGetUsers,
 } from '@/shared/api/openApi/queries';
 import { parseJwt } from '@/shared/hooks/parseJWT';
-// import { fetchUsers } from "../../features/applicationSlice";
 // import Disk from "../Disk/Disk";
 // import Web from "../../pages/Web/Web";
 import { connect } from 'socket.io-client';
-export const socket = connect('http://localhost:3001');
+export const socket = connect('http://localhost:3010');
 
 export const ChatMessage = ({ universityId }: { universityId: string }) => {
-  // const dispath = useDispatch();
   const token = localStorage.getItem('token');
 
   const navigate = useNavigate();
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
-  const { data: userID } = parseJwt(token as string);
+  const { id: userID } = parseJwt(token as string);
   const { data: university } = useUniversityServiceGetUniversityById({
     id: universityId as string,
   });
-  // const { data: allUniversity } = useGetUni();
+  const { data: allUniversity } = useUniversityServiceGetUniversity();
   const { data: allUsers } = useUserServiceGetUsers();
 
   const addComment = useUniversityServicePostUniversityAddCommentById();
@@ -39,12 +38,6 @@ export const ChatMessage = ({ universityId }: { universityId: string }) => {
   const scrollToBottom = () => {
     messagesEndRef.current.scrollTop = messagesEndRef.current?.scrollHeight;
   };
-
-  // const messages = useSelector((state) =>
-  //   state.room.room.find((message) => {
-  //     return message._id === id;
-  //   }),
-  // );
 
   const messages = allUniversity?.find((message) => {
     return message._id === universityId;
