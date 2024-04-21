@@ -33,7 +33,9 @@ export const ChatMessage = ({ universityId }: { universityId: string }) => {
   const addComment = useUniversityServicePostUniversityAddCommentById();
 
   const [currentMessage, setCurrentMessage] = useState('');
-  const [messageList, setMessageList] = useState([]);
+  const [messageList, setMessageList] = useState<
+    Array<{ time: string; admin: string; message: string }>
+  >([]);
 
   const scrollToBottom = () => {
     messagesEndRef.current.scrollTop = messagesEndRef.current?.scrollHeight;
@@ -42,8 +44,6 @@ export const ChatMessage = ({ universityId }: { universityId: string }) => {
   const messages = allUniversity?.find((message) => {
     return message._id === universityId;
   });
-
-  const admin = university?.admin;
 
   const minutes =
     new Date(Date.now()).getMinutes() < 10
@@ -66,7 +66,6 @@ export const ChatMessage = ({ universityId }: { universityId: string }) => {
       const messageData = {
         room: universityId,
         admin: userID,
-        authorName: admin?.name,
         message: currentMessage,
         time: hours + ':' + minutes,
       };
@@ -76,10 +75,6 @@ export const ChatMessage = ({ universityId }: { universityId: string }) => {
       setCurrentMessage('');
     }
   };
-
-  // const handleRouteRoom = () => {
-  //   navigate(`/room/info/${id}`);
-  // };
 
   useEffect(() => {
     scrollToBottom();
@@ -112,7 +107,9 @@ export const ChatMessage = ({ universityId }: { universityId: string }) => {
                       </div>
                       <div className={styles.comment_footer}>
                         <span className={styles.time}>{item.time}</span>
-                        <span className={styles.admin}>{item.user.name}</span>
+                        {/* <span className={styles.admin}>
+                          {allUsers?.find((item) => item._id === userID)?.name}
+                        </span> */}
                       </div>
                     </div>
                   </div>
@@ -132,7 +129,9 @@ export const ChatMessage = ({ universityId }: { universityId: string }) => {
                       </div>
                       <div className={styles.comment_footer}>
                         <span className={styles.time}>{messageContent.time}</span>
-                        <span className={styles.admin}>{messageContent.authorName}</span>
+                        {/* <span className={styles.admin}>
+                          {allUsers?.find((item) => item._id === userID)?.name}
+                        </span> */}
                       </div>
                     </div>
                   </div>
