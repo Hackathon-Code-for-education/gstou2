@@ -42,7 +42,7 @@
 
 /**
  * @swagger
- * /dormitory:
+ * /dormitore:
  *   get:
  *     summary: Получить список общежитий
  *     tags: [Dormitory]
@@ -61,7 +61,7 @@
 
 /**
  * @swagger
- * /dormitory/{id}:
+ * /dormitore/{id}:
  *   get:
  *     summary: Получить одно общежитие
  *     tags: [Dormitory]
