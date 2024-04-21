@@ -8,8 +8,8 @@ export const HeroSectionMainPage = () => {
         srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/ce0dc3b863d4259034721db7ddc391af1cf7b1a29ad060813ec0bd3aba698a08?apiKey=e42cd9368a8e421884a35ab82a3ff557&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/ce0dc3b863d4259034721db7ddc391af1cf7b1a29ad060813ec0bd3aba698a08?apiKey=e42cd9368a8e421884a35ab82a3ff557&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ce0dc3b863d4259034721db7ddc391af1cf7b1a29ad060813ec0bd3aba698a08?apiKey=e42cd9368a8e421884a35ab82a3ff557&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ce0dc3b863d4259034721db7ddc391af1cf7b1a29ad060813ec0bd3aba698a08?apiKey=e42cd9368a8e421884a35ab82a3ff557&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/ce0dc3b863d4259034721db7ddc391af1cf7b1a29ad060813ec0bd3aba698a08?apiKey=e42cd9368a8e421884a35ab82a3ff557&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ce0dc3b863d4259034721db7ddc391af1cf7b1a29ad060813ec0bd3aba698a08?apiKey=e42cd9368a8e421884a35ab82a3ff557&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/ce0dc3b863d4259034721db7ddc391af1cf7b1a29ad060813ec0bd3aba698a08?apiKey=e42cd9368a8e421884a35ab82a3ff557&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/ce0dc3b863d4259034721db7ddc391af1cf7b1a29ad060813ec0bd3aba698a08?apiKey=e42cd9368a8e421884a35ab82a3ff557&"
       />
       <HeroContent>
-        <HeroTitle>{`Среднее и высшее образованиев Европе, Англии и США.`}</HeroTitle>
-        <HeroSubtitle>{'Повысьте свои шансы на поступление в Западные вузы.'}</HeroSubtitle>
+        <HeroTitle>{`Среднее и высшее образованиев в России.`}</HeroTitle>
+        <HeroSubtitle>{'Повысьте свои шансы на поступление в лушие вузы.'}</HeroSubtitle>
         <HeroButton>{'Поступить'}</HeroButton>
       </HeroContent>
     </HeroContainer>
