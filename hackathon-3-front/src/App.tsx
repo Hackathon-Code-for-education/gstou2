@@ -7,6 +7,7 @@ import { UniversityPage } from './pages/UniversityPage';
 import { Panorama } from './widgets/Panorama';
 import { DormitoryPage } from './pages/DormitoryPage/ui/DormitoryPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { NewsPage } from './pages/NewsPage';
 
 
 function App() {
@@ -42,6 +43,10 @@ function App() {
     {
       path: '*',
       element: <NotFoundPage />
+    },
+    {
+      path: "/newsPage/:id",
+      element: <NewsPage />
     }
 
     // {
