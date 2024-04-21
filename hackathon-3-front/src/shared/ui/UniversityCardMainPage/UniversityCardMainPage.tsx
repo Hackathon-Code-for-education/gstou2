@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { socket } from '@/widgets/ChatMessage/ChatMessage';
 
 interface UniversityCardProps {
   universityName: string;
@@ -21,8 +22,16 @@ export const UniversityCardMainPage: React.FC<UniversityCardProps> = ({
   link,
 }) => {
   const navigate = useNavigate();
+
+  const joinRoom = () => {
+    if (link !== '') {
+      socket.emit('join_room', link);
+      navigate(`/university/${link}`);
+    }
+  };
+  
   return (
-    <CardWrapper onClick={() => navigate(`/university/${link}`)}>
+    <CardWrapper onClick={joinRoom}>
       <ImageWrapper>
         {backgroundImage ? (
           <BackgroundImage src={backgroundImage} alt="sadas" />

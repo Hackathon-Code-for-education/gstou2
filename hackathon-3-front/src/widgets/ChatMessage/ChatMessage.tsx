@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import styles from './chatmessage.module.scss';
 // import { socket } from '../ChatForm/ChatForm';
 import {
-  useUniversityServiceGetUniversity,
   useUniversityServiceGetUniversityById,
+  useUniversityServiceGetUniversityKey,
+  useUniversityServicePostUniversityAddCommentById,
   useUniversityServicePostUniversityById,
   useUserServiceGetUsers,
 } from '@/shared/api/openApi/queries';
@@ -27,9 +28,11 @@ export const ChatMessage = ({ universityId }: { universityId: string }) => {
   const { data: university } = useUniversityServiceGetUniversityById({
     id: universityId as string,
   });
-  const { data: allUniversity } = useUniversityServiceGetUniversity();
+  // const { data: allUniversity } = useGetUni();
   const { data: allUsers } = useUserServiceGetUsers();
-  
+
+  const addComment = useUniversityServicePostUniversityAddCommentById();
+
   const [currentMessage, setCurrentMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
 
@@ -56,21 +59,21 @@ export const ChatMessage = ({ universityId }: { universityId: string }) => {
 
   const hours = new Date(Date.now()).getHours();
 
-  const sendMessage = () => {
-    dispath(
-      addComment({
-        id,
+  const sendMessage = async () => {
+    await addComment.mutateAsync({
+      requestBody: {
         user: userID,
         comment: currentMessage,
         time: hours + ':' + minutes,
-      }),
-    );
+      },
+      id: universityId,
+    });
 
     if (currentMessage !== '') {
       const messageData = {
-        room: id,
+        room: universityId,
         admin: userID,
-        authorName: admin.name,
+        authorName: admin?.name,
         message: currentMessage,
         time: hours + ':' + minutes,
       };
@@ -94,11 +97,6 @@ export const ChatMessage = ({ universityId }: { universityId: string }) => {
       setMessageList((list) => [...list, data]);
     });
   }, []);
-
-  // useEffect(() => {
-  //   dispath(fetchUsers());
-  //   dispath(fetchRoom({ id: localStorage.getItem('id') }));
-  // }, [dispath]);
 
   return (
     <div className={styles.bg}>
