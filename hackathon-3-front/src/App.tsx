@@ -47,7 +47,7 @@ function App() {
       element: <PanoramaPage />
     },
     {
-      path: '/dormitory',
+      path: '/dormitore/:id',
       element: <DormitoryPage />
     },
     {
