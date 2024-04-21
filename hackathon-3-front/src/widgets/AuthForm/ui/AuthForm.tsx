@@ -8,12 +8,14 @@ import styles from './authForm.module.scss';
 import { saveAuth, useSignOut } from '@/shared/hooks';
 import { Form, Checkbox } from 'antd';
 import { Flex, ServiceIcon, Text, Input, Button, Title } from 'gentlemen-ui-kit';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const AuthForm = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const pageSignIn = pathname === '/signIn';
+
+  const [tabState, setTabState]=useState('1')
 
   const logOut = useSignOut();
   const signIn = useUserServicePostLogin();
@@ -43,7 +45,7 @@ export const AuthForm = () => {
 
         if (data && 'token' in data) {
           saveAuth(data.token as string);
-          navigate('/');
+          navigate('/newProfile');
         } else {
           navigate('/signIn');
         }
@@ -60,8 +62,10 @@ export const AuthForm = () => {
   useEffect(() => {
     logOut();
   }, []);
+
   return (
     <div className={styles.form}>
+
       <Flex gap={24} vertical align="center">
         <ServiceIcon as={'Logout'} themeColor="brand100" />
         <Flex vertical align="center" gap={8}>

@@ -10,6 +10,7 @@ import { DormitoryPage } from './pages/DormitoryPage/ui/DormitoryPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import AddNews from './widgets/AddNews/ui/AddNews';
 import { PanoramaPage } from './pages/PanoramaPage';
+import { Profile } from './pages/Profile/Profile';
 
 
 function App() {
@@ -57,7 +58,7 @@ function App() {
     {
       path: '*',
       element: <NotFoundPage />
-    }
+    },
 
     // {
     //   path: "/my_accaunt",
@@ -73,6 +74,15 @@ function App() {
     //     },
     //   ],
     // },
+
+    // new
+
+    {
+      path: '/newProfile',
+      element: <Profile />
+    }
+
+
   ]);
 
   return <RouterProvider router={routes} />;
