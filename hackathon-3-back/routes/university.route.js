@@ -5,7 +5,6 @@ const {
 } = require("../controllers/university.controller");
 const createMulter = require("../middleware/image.middleware");
 const productUpload = createMulter("university");
-const authMiddleware = require("../middleware/auth.middleware");
 
 router.post(
   "/university/:id",
@@ -21,18 +20,13 @@ router.post(
 );
 router.delete("/university/:id", universityController.deleteUniversity);
 
-router.post(
-  "/university/addComment/:id",
-  authMiddleware,
-  universityController.addComment
-);
+router.post("/university/addComment/:id", universityController.addComment);
 router.post(
   "/university/addUser/:id",
   universityController.addUserToUniversity
 );
 router.post(
   "/university/deleteUser/:id",
-  authMiddleware,
   universityController.deleteUserUniversity
 );
 
