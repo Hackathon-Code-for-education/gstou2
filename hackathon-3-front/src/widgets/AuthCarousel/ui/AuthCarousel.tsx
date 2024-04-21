@@ -12,13 +12,13 @@ export const AuthCarousel = () => {
     <div className={styles.carousel}>
       <div className={styles.logo}>
         {/* <img src={logo} alt="DOGMA" /> */}
-        <h1>Promise</h1>
-        <span>строительная компания</span>
+        <h1></h1>
+        <span></span>
       </div>
       <Carousel>
-        <img src={firstImg} alt="" />
-        <img src={secondImg} alt="" />
-        <img src={thirdImg} alt="" />
+        <img src={'https://thumb.tildacdn.com/7f63c963-8007-4319-a9af-9b5af827067d/-/resize/744x/-/format/webp/8b6295f7a9ad42cd8266f22b9410844b.png'} alt="" />
+        <img src={'https://www.studylab.ru/upload/Articles/image/big/86946b2e115270a117a1a9e8f73cca3e.jpeg'} alt="" />
+        <img src={'https://ed-world.kz/images/city/6.jpg'} alt="" />
       </Carousel>
     </div>
   );
