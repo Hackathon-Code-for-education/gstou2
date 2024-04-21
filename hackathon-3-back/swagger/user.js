@@ -33,7 +33,7 @@
  *         photo:
  *           type: string
  *           description: Ссылка на фотографию пользователя
- *         instituteId:
+ *         institute:
  *           type: string
  *           description: Идентификатор института пользователя
  *         raiting:
@@ -56,6 +56,7 @@
  *             type: string
  *           description: Массив избранных институтов пользователя
  *       required:
+ *         - name
  *         - login
  *         - password
  */
@@ -125,10 +126,17 @@
 
 /**
  * @swagger
- * /user:
+ * /user/{id}:
  *   get:
  *     summary: Получить одного пользователя
  *     tags: [User]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Идентификатор пользователя
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: Возвращает одного пользователя

@@ -5,6 +5,7 @@ const universitySchema = mongoose.Schema({
   image: [],
   email: String,
   siteUrl: String,
+  address: String,
   news: [
     {
       type: mongoose.SchemaTypes.ObjectId,
@@ -19,7 +20,7 @@ const universitySchema = mongoose.Schema({
   ],
   dormitory: {
     type: mongoose.SchemaTypes.ObjectId,
-    ref: "Dormitory",
+    ref: "Dormitore",
   },
   docsImg: {
     type: String,
@@ -34,6 +35,30 @@ const universitySchema = mongoose.Schema({
       ref: "Review",
     },
   ],
+  users: [
+    {
+      user: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "User",
+      },  
+      comment: {
+        type: String,
+      },
+      time: {
+        type: String,
+      },
+    },
+  ],
+  access: [
+    {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "User",
+    },
+  ],
+  admin: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "User",
+  },
 });
 
 const University = mongoose.model("University", universitySchema);

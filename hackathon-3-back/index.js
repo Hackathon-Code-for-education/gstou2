@@ -8,6 +8,9 @@ const app = express();
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 
+const http = require("http");
+const { Server } = require("socket.io");
+
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -41,21 +44,59 @@ app.use(require("./routes/user.route"));
 app.use(require("./routes/institute.route"));
 app.use(require("./routes/review.route"));
 app.use(require("./routes/universityNews.route"));
-app.use(require('./routes/dormitore.route'));
+app.use(require("./routes/dormitore.route"));
 app.use(require("./routes/university.route"));
+app.use(require("./routes/task.route"));
 
+mongoose
+  .connect(process.env.MONGO_SERVER)
+  .then(() => console.log("mongoose connect"))
+  .catch(() => console.log("mongoose warning"));
 
-const start = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_SERVER);
-    console.log("Подключились к базе");
-  } catch (error) {
-    console.log(error);
-  }
-};
+//Chat
+const server = http.createServer(app);
 
-app.listen(process.env.PORT, () => {
-  console.log("Подключились к серверу");
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  },
 });
 
-start();
+io.on("connection", (socket) => {
+  console.log(`User connected: ${socket.id}`);
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  });
+
+  socket.on("send_message", (data) => {
+    socket.to(data.room).emit("receive_message", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected", socket.id);
+  });
+
+  socket.on("leave", leaveRoom);
+  socket.on("disconnecting", leaveRoom);
+
+  socket.on("relay-sdp", ({ peerID, sessionDescription }) => {
+    io.to(peerID).emit("session-description", {
+      peerID: socket.id,
+      sessionDescription,
+    });
+  });
+
+  socket.on("relay-ice", ({ peerID, iceCandidate }) => {
+    io.to(peerID).emit("ice-candidate", {
+      peerID: socket.id,
+      iceCandidate,
+    });
+  });
+});
+
+server.listen(process.env.PORT, () => {
+  console.log(`Сервер запущен на порте ${process.env.PORT}`);
+});

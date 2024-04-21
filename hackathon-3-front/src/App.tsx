@@ -4,6 +4,7 @@ import '@/app/axios/axiosDefault';
 import { Redirect } from './shared/hooks/redirect';
 import { MainPage } from './pages/MainPage';
 import { UniversityPage } from './pages/UniversityPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 function App() {
   const routes = createBrowserRouter([
@@ -26,6 +27,14 @@ function App() {
     {
       path: '/university/:id',
       element: <UniversityPage />,
+    },
+    {
+      path: '/university/info/:id',
+      element: <UniversityPage />,
+    },
+    {
+      path: '/profile/:id',
+      element: <ProfilePage />,
     },
     // {
     //   path: "/my_accaunt",

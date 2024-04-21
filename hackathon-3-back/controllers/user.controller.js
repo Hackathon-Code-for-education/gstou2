@@ -43,7 +43,7 @@ module.exports.userController = {
   },
 
   getUser: async (req, res) => {
-    const data = await User.findOne();
+    const data = await User.findById(req.params.id);
     res.json(data);
   },
 
@@ -64,7 +64,7 @@ module.exports.userController = {
     } = req.body;
 
     try {
-      // const photo = req.files && req.files[0] ? req.files[0].path : "";
+      const photo = req.files && req.files[0] ? req.files[0].path : "";
 
       const data = await User.findByIdAndUpdate(
         req.params.id,

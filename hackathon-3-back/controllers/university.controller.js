@@ -1,65 +1,38 @@
 const University = require("../models/University.model");
 
 module.exports.universityController = {
-  registerUniversity: async (req, res) => {
+  createUniversity: async (req, res) => {
     try {
-      const {
-        name,
-        email,
-        siteUrl,
-        news,
-        institute,
-        dormitory,
-        docsImg,
-        selectionCommittee,
-        reviews,
-      } = req.body;
-
-      const photo = [];
-
-      if (req.files && req.files.length > 0) {
-        for (let i = 0; i < req.files.length; i++) {
-          const photoPath = req.files[i].path;
-          photo.push(photoPath);
-        }
-      }
-
-      const university = await University.create({
-        name,
-        image: photo,
-        email,
-        siteUrl,
-        news,
-        institute,
-        dormitory,
-        docsImg,
-        selectionCommittee,
-        reviews,
+      const newUniversity = new University({
+        ...req.body,
+        access: req.params.id,
+        admin: req.params.id, // Предполагается, что id администратора передается в параметрах запроса
       });
+      await newUniversity.save();
 
-      res.json(university);
+      res.json(newUniversity);
     } catch (error) {
-      res.status(500).json({ error: "Internal server error" });
+      res.status(500).json({ error: error.message });
     }
   },
 
   getUniversity: async (req, res) => {
     try {
-      const universities = await University.findOne({ _id: req.params.id });
-
-      res.json(universities);
+      const university = await University.findById(req.params.id).populate(
+        "users.user admin news institute dormitory reviews"
+      );
+      res.json(university);
     } catch (error) {
-      res.status(500).json({ error: "Internal server error" });
+      res.status(500).json({ error: error.message });
     }
   },
 
   getAllUniversity: async (req, res) => {
     try {
-      const universities = await University.find();
-
-      res.json(universities);
+      const university = await University.find(req.params.id);
+      res.json(university);
     } catch (error) {
-      res.status(500).json({ error: "Internal server error" });
+      res.status(500).json({ error: error.message });
     }
   },
 
@@ -110,6 +83,69 @@ module.exports.universityController = {
       res.json(updatedUniversity);
     } catch (error) {
       res.status(500).json({ error: "Internal server error" });
+    }
+  },
+
+  deleteUniversity: async (req, res) => {
+    try {
+      const data = await University.findByIdAndDelete(req.params.id);
+      res.json(data);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
+  addComment: async (req, res) => {
+    try {
+      const { user, comment, time } = req.body;
+      const university = await University.findById(req.params.id);
+      const result = university.access.filter(
+        (item) => item.toString() === user
+      );
+
+      if (result.toString()) {
+        const data = await University.findByIdAndUpdate(req.params.id, {
+          $push: { users: { user: user, comment: comment, time: time } },
+        });
+
+        res.json(data.users);
+      } else {
+        res.json("Такой пользователь не найден");
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
+  addUserToUniversity: async (req, res) => {
+    try {
+      const data = await University.findByIdAndUpdate(
+        req.params.id,
+        {
+          $addToSet: { access: req.body.user },
+        },
+        { new: true }
+      ).populate("access");
+
+      return res.json(data);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
+  deleteUserUniversity: async (req, res) => {
+    try {
+      const data = await University.findByIdAndUpdate(
+        req.params.id,
+        {
+          $pull: { access: req.body.user },
+        },
+        { new: true }
+      ).populate("access");
+
+      return res.json(data);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
   },
 };

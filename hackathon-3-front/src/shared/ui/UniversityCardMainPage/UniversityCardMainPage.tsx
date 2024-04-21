@@ -50,6 +50,8 @@ const Img = styled.img`
 `;
 
 const CardWrapper = styled.article`
+  width: 350px;
+  height: 500px;
   border-radius: 16px;
   box-shadow: 0px 12px 20px 0px rgba(124, 117, 104, 0.2);
   background-color: #fff;
@@ -57,11 +59,14 @@ const CardWrapper = styled.article`
   display: flex;
   flex-direction: column;
   padding-bottom: 16px;
+  overflow: hidden;
+  object-fit: cover;
 `;
 
 const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
+  height: 250px;
   aspect-ratio: 1.47;
   overflow: hidden;
   padding: 16px;
