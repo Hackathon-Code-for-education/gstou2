@@ -21,3 +21,15 @@ npm run start
 посмотреть swagger можно по ссылке: [`swagger`](http://localhost:3010/api-docs/) - - [`http://localhost:3010/api-docs/`](http://localhost:3010/api-docs/)
 
 посмотреть работу проекта: [`Проект`](http://localhost:5173/) - [`http://localhost:5173/`](http://localhost:5173/)
+
+## Как запустустить обладателям MacBook ?
+
+Удалить папку nodu_module и package-lock.json в hackathon-3-front
+
+### Далее сделать:
+
+```bash
+npm i
+npm run start
+```
+В остальном та же инструкция
