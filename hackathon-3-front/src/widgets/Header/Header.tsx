@@ -8,7 +8,7 @@ export const Header = () => {
   const Navigate = useNavigate();
 
   const items1 = [
-    { title: 'Новости', path: '/news' },
+    { title: 'Главная', path: '/main' },
     { title: 'Страны', path: '/country' },
     { title: 'Программы', path: '/program' },
     { title: 'Контакты', path: '/contact' },
@@ -33,9 +33,12 @@ export const Header = () => {
       />
 
       {token ? (
-        <div style={{ width: 80, display: 'flex', justifyContent: 'space-between', gap: 50 }} >
+           <div style={{ width: 300, display: 'flex', justifyContent: 'space-between', gap: 50 }}>
           <Button type="primary" style={{ backgroundColor: 'white', color: '#001529' }} onClick={() => removeToken()} >
             Выйти
+          </Button>
+          <Button type="primary" style={{ backgroundColor: 'white', color: '#001529' }} onClick={() => Navigate('/newProfile')}>
+            Мой профиль
           </Button>
         </div>
       ) : (

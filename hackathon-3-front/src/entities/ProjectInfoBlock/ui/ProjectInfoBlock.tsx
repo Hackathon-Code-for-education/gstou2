@@ -9,6 +9,7 @@ import { ProjectInfo } from './ProjectInfoItem';
 
 import styles from './projectInfo.module.scss';
 import { University } from '@/shared/api/openApi/requests';
+import { Navigate } from 'react-router-dom';
 
 export interface ILabels {
   key: string;

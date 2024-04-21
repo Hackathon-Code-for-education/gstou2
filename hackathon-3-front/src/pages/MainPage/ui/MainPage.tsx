@@ -1,5 +1,4 @@
 import { AreStillQuestions } from '@/shared/ui/AreStillQuestions/AreStillQuestions';
-import { HeaderMainPage } from '@/shared/ui/HeaderMainPage/HeaderMainPage';
 import { HeroSectionMainPage } from '@/shared/ui/HeroSectionMainPage/HeroSectionMainPage';
 import { StatItemMainPage } from '@/shared/ui/StatItemMainPage/StatItemMainPage';
 import { WeAreHelpingWith } from '@/shared/ui/WeAreHelpingWith/WeAreHelpingWith';
@@ -12,15 +11,12 @@ export const MainPage = () => {
   return (
     <LayoutContent>
       <Header />
-      {/* <HeroSectionMainPage /> */}
-
+      <HeroSectionMainPage />
+      <StatItemMainPage />
+      <WeAreHelpingWith />
+      <UniversityCards />
+      <AreStillQuestions />
     </LayoutContent>
-    // <div className={styles.mainPage}>
-    //   <HeaderMainPage />
-    //   <StatItemMainPage />
-    //   <WeAreHelpingWith />
-    //   <UniversityCards />
-    //   <AreStillQuestions />
-    // </div>
+
   );
 };

@@ -36,10 +36,10 @@ function App() {
       path: '/university/:id',
       element: <UniversityPage />,
     },
-    {
-      path: '/university/info/:id',
-      element: <UniversityPage />,
-    },
+    // {
+    //   path: '/university/info/:id',
+    //   element: <UniversityPage />,
+    // },
     {
       path: '/profile/:id',
       element: <ProfilePage />,
