@@ -6,6 +6,7 @@ import { MainPage } from './pages/MainPage';
 import { UniversityPage } from './pages/UniversityPage';
 import { Panorama } from './widgets/Panorama';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { PanoramaPage } from './pages/PanoramaPage';
 
 function App() {
   const routes = createBrowserRouter([
@@ -31,7 +32,7 @@ function App() {
     },
     {
       path: '/panorama',
-      element: <Panorama />
+      element: <PanoramaPage />
     },
     {
       path: '*',
