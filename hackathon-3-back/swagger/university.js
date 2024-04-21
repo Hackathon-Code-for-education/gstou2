@@ -12,6 +12,9 @@
  *     University:
  *       type: object
  *       properties:
+ *         _id:
+ *           type: string
+ *           description: Уникальный идентификатор новости университета
  *         name:
  *           type: string
  *           description: Название университета

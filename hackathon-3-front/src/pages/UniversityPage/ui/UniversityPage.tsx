@@ -5,10 +5,8 @@ import { Flex } from 'gentlemen-ui-kit';
 import { Link, useParams } from 'react-router-dom';
 import styles from './universityPage.module.scss';
 import { HeaderMainPage } from '@/shared/ui/HeaderMainPage/HeaderMainPage';
-import { connect } from 'socket.io-client';
 import { ChatMessage } from '@/widgets/ChatMessage/ChatMessage';
-
-export const socket = connect('http://localhost:3010');
+import { NewsFeed } from '@/widgets/NewsFeed';
 
 export const UniversityPage = () => {
   const { id } = useParams();
@@ -30,9 +28,14 @@ console.log(data);
           />
           <ProjectInfoBlock data={data} title={data?.name || ''} />
         </Flex>
+
         <Link to={`/dormitore/${data?.dormitory?._id}`}>Перейти к общежитию</Link>
         {/* <NewsFeed /> */}
         {/* <ChatMessage universityId={id as string} /> */}
+
+        <ChatMessage universityId={id as string} />
+        <NewsFeed />
+
       </Flex>
     </div>
   );

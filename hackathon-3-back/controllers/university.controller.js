@@ -107,7 +107,6 @@ module.exports.universityController = {
         const data = await University.findByIdAndUpdate(req.params.id, {
           $push: { users: { user: user, comment: comment, time: time } },
         });
-
         res.json(data.users);
       } else {
         res.json("Такой пользователь не найден");
