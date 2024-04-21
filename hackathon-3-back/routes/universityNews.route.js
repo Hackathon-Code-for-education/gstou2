@@ -13,6 +13,6 @@ router.patch(
   productUpload.array("image"),
   universityNewsController.updateNews
 );
-router.delete("/news:id", universityNewsController.deleteNews);
+router.delete("/news/:id", universityNewsController.deleteNews);
 
 module.exports = router;
