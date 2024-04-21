@@ -53,6 +53,16 @@ module.exports.universityController = {
     }
   },
 
+  getAllUniversity: async (req, res) => {
+    try {
+      const universities = await University.find();
+
+      res.json(universities);
+    } catch (error) {
+      res.status(500).json({ error: "Internal server error" });
+    }
+  },
+
   patchUniversity: async (req, res) => {
     try {
       const {
