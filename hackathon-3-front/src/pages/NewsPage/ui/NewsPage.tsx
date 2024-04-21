@@ -13,7 +13,8 @@ export const NewsPage: FC<NewsPageProps> = (props) => {
   if (isLoading || isError || !data) {
     return <></>;
   }
-  console.log(data.image?.length);
+  const grid = data.image?.length
+  console.log(grid);
   
 
   return (
@@ -24,7 +25,14 @@ export const NewsPage: FC<NewsPageProps> = (props) => {
         </div>
         <div className={styles.info}>
           <div className={styles.newsImg}>
+            {data.image?.length && data.image?.length > 1 ? 
+              data.image.map((image, index) => (
+            <img src={data.image ? `http://localhost:3010/${data.image[index]}` : ''} alt="" />
+              ))
+            : 
             <img src={data.image ? `http://localhost:3010/${data.image[0]}` : ''} alt="" />
+            }
+            
           </div>
           <div className={styles.descriptions}><span>{data?.description}</span></div>
         </div>
