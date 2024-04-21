@@ -58,7 +58,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST"],
   },
 });
@@ -73,27 +73,6 @@ io.on("connection", (socket) => {
 
   socket.on("send_message", (data) => {
     socket.to(data.room).emit("receive_message", data);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("User disconnected", socket.id);
-  });
-
-  socket.on("leave", leaveRoom);
-  socket.on("disconnecting", leaveRoom);
-
-  socket.on("relay-sdp", ({ peerID, sessionDescription }) => {
-    io.to(peerID).emit("session-description", {
-      peerID: socket.id,
-      sessionDescription,
-    });
-  });
-
-  socket.on("relay-ice", ({ peerID, iceCandidate }) => {
-    io.to(peerID).emit("ice-candidate", {
-      peerID: socket.id,
-      iceCandidate,
-    });
   });
 });
 
