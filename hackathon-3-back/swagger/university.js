@@ -2,7 +2,7 @@
  * @swagger
  * tags:
  *   name: University
- *   description: Операции, связанные с управлением университетами
+ *   description: Операции, связанные с университетами
  */
 
 /**
@@ -12,9 +12,6 @@
  *     University:
  *       type: object
  *       properties:
- *         _id:
- *           type: string
- *           description: Уникальный идентификатор университета
  *         name:
  *           type: string
  *           description: Название университета
@@ -22,70 +19,109 @@
  *           type: array
  *           items:
  *             type: string
- *           description: Массив ссылок на изображения университета
+ *           description: Список URL изображений университета
  *         email:
  *           type: string
  *           description: Электронная почта университета
  *         siteUrl:
  *           type: string
- *           description: Ссылка на сайт университета
+ *           description: URL сайта университета
  *         address:
  *           type: string
  *           description: Адрес университета
  *         news:
  *           type: array
  *           items:
- *             type: string
- *           description: Массив идентификаторов новостей университета
+ *             $ref: '#/components/schemas/UniversityNews'
+ *           description: Список новостей университета
  *         institute:
  *           type: array
  *           items:
- *             type: string
- *           description: Массив идентификаторов институтов университета
+ *             $ref: '#/components/schemas/Institute'
+ *           description: Список институтов университета
  *         dormitory:
- *           type: string
- *           description: Идентификатор общежития университета
+ *           $ref: '#/components/schemas/Dormitory'
+ *           description: Общежитие университета
  *         docsImg:
  *           type: string
- *           description: Ссылка на документы университета
+ *           description: URL изображения документов университета
  *         selectionCommittee:
  *           type: object
  *           properties:
  *             mail:
  *               type: string
- *               description: Почта приемной комиссии университета
+ *               description: Электронная почта приемной комиссии университета
  *             phone:
  *               type: string
  *               description: Телефон приемной комиссии университета
- *           description: Контактные данные приемной комиссии университета
+ *           description: Контактная информация приемной комиссии университета
  *         reviews:
  *           type: array
  *           items:
- *             type: string
- *           description: Массив идентификаторов отзывов университета
+ *             $ref: '#/components/schemas/Review'
+ *           description: Список отзывов о университете
  *         users:
  *           type: array
  *           items:
- *             type: object
- *             properties:
- *               user:
- *                 type: string
- *                 description: Идентификатор пользователя
- *               comment:
- *                 type: string
- *                 description: Комментарий пользователя
- *               time:
- *                 type: string
- *                 description: Время комментария
- *           description: Массив комментариев пользователей к университету
+ *             $ref: '#/components/schemas/UserComment'
+ *           description: Список комментариев пользователей о университете
  *         access:
  *           type: array
  *           items:
  *             type: string
- *           description: Массив идентификаторов пользователей, имеющих доступ к университету
+ *           description: Список идентификаторов пользователей, имеющих доступ к университету
  *         admin:
  *           type: string
  *           description: Идентификатор администратора университета
+ *       required:
+ *         - name
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     UniversityNews:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *           description: Уникальный идентификатор новости университета
+ *         title:
+ *           type: string
+ *           description: Заголовок новости
+ *         description:
+ *           type: string
+ *           description: Описание новости
+ *         image:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Список URL изображений новости
+ *         reviews:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/Review'
+ *           description: Список идентификаторов отзывов к новости
+ *       required:
+ *         - title
+ *         - description
+ *     Institute:
+ *       type: object
+ *       properties:
+ *         // Определите свойства для института
+ *     Dormitory:
+ *       type: object
+ *       properties:
+ *         // Определите свойства для общежития
+ *     Review:
+ *       type: object
+ *       properties:
+ *         // Определите свойства для отзыва
+ *     UserComment:
+ *       type: object
+ *       properties:
+ *         // Определите свойства для комментария пользователя
  */
 
 /**
@@ -94,13 +130,19 @@
  *   post:
  *     summary: Создать новый университет
  *     tags: [University]
+ *     description: Создает новый университет с заданным ID администратора
  *     parameters:
  *       - in: path
  *         name: id
- *         required: true
- *         description: Идентификатор администратора университета
  *         schema:
  *           type: string
+ *         required: true
+ *         description: ID администратора
+ *       - in: formData
+ *         name: image
+ *         type: file
+ *         description: Изображение университета
+ *         required: true
  *     requestBody:
  *       required: true
  *       content:
@@ -108,72 +150,55 @@
  *           schema:
  *             $ref: '#/components/schemas/University'
  *     responses:
- *       200:
+ *       '200':
  *         description: Университет успешно создан
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/University'
- *       500:
- *         description: Внутренняя ошибка сервера
  */
 
 /**
  * @swagger
  * /university/{id}:
  *   get:
- *     summary: Получить информацию об университете
+ *     summary: Получить университет по ID
  *     tags: [University]
+ *     description: Получает информацию об университете по его ID
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: Идентификатор университета
  *         schema:
  *           type: string
+ *         description: ID университета
  *     responses:
- *       200:
- *         description: Информация об университете успешно получена
+ *       '200':
+ *         description: Университет успешно получен
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/University'
- *       500:
- *         description: Внутренняя ошибка сервера
- */
-
-/**
- * @swagger
- * /university:
- *   get:
- *     summary: Получить информацию о всех университетах
- *     tags: [University]
- *     responses:
- *       200:
- *         description: Информация о всех университетах успешно получена
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/University'
- *       500:
- *         description: Внутренняя ошибка сервера
  */
 
 /**
  * @swagger
  * /university/{id}:
  *   patch:
- *     summary: Обновить информацию о университете
+ *     summary: Обновить университет
  *     tags: [University]
+ *     description: Обновляет информацию об университете
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: Идентификатор университета
  *         schema:
  *           type: string
+ *         description: ID университета
+ *       - in: formData
+ *         name: image
+ *         type: file
+ *         description: Изображение университета
  *     requestBody:
  *       required: true
  *       content:
@@ -181,16 +206,12 @@
  *           schema:
  *             $ref: '#/components/schemas/University'
  *     responses:
- *       200:
- *         description: Информация о университете успешно обновлена
+ *       '200':
+ *         description: Университет успешно обновлен
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/University'
- *       404:
- *         description: Университет не найден
- *       500:
- *         description: Внутренняя ошибка сервера
  */
 
 /**
@@ -199,37 +220,41 @@
  *   delete:
  *     summary: Удалить университет
  *     tags: [University]
+ *     description: Удаляет университет по его ID
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: Идентификатор университета
  *         schema:
  *           type: string
+ *         description: ID университета
  *     responses:
- *       200:
+ *       '200':
  *         description: Университет успешно удален
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/University'
- *       500:
+ *       '404':
+ *         description: Университет не найден
+ *       '500':
  *         description: Внутренняя ошибка сервера
  */
 
 /**
  * @swagger
  * /university/addComment/{id}:
- *   patch:
+ *   post:
  *     summary: Добавить комментарий к университету
  *     tags: [University]
+ *     description: Добавляет комментарий к университету по его ID
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: Идентификатор университета
  *         schema:
  *           type: string
+ *         description: ID университета
  *     requestBody:
  *       required: true
  *       content:
@@ -244,29 +269,32 @@
  *               time:
  *                 type: string
  *     responses:
- *       200:
+ *       '200':
  *         description: Комментарий успешно добавлен
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/University'
- *       500:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/UserComment'
+ *       '500':
  *         description: Внутренняя ошибка сервера
  */
 
 /**
  * @swagger
  * /university/addUser/{id}:
- *   patch:
+ *   post:
  *     summary: Добавить пользователя к университету
  *     tags: [University]
+ *     description: Добавляет пользователя к университету по его ID
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: Идентификатор университета
  *         schema:
  *           type: string
+ *         description: ID университета
  *     requestBody:
  *       required: true
  *       content:
@@ -277,29 +305,30 @@
  *               user:
  *                 type: string
  *     responses:
- *       200:
- *         description: Пользователь успешно добавлен к университету
+ *       '200':
+ *         description: Пользователь успешно добавлен
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/University'
- *       500:
+ *       '500':
  *         description: Внутренняя ошибка сервера
  */
 
 /**
  * @swagger
  * /university/deleteUser/{id}:
- *   patch:
+ *   post:
  *     summary: Удалить пользователя из университета
  *     tags: [University]
+ *     description: Удаляет пользователя из университета по его ID
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: Идентификатор университета
  *         schema:
  *           type: string
+ *         description: ID университета
  *     requestBody:
  *       required: true
  *       content:
@@ -310,12 +339,32 @@
  *               user:
  *                 type: string
  *     responses:
- *       200:
- *         description: Пользователь успешно удален из университета
+ *       '200':
+ *         description: Пользователь успешно удален
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/University'
- *       500:
+ *       '500':
+ *         description: Внутренняя ошибка сервера
+ */
+
+/**
+ * @swagger
+ * /university:
+ *   get:
+ *     summary: Получить все университеты
+ *     tags: [University]
+ *     description: Получает список всех университетов
+ *     responses:
+ *       '200':
+ *         description: Список университетов успешно получен
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/University'
+ *       '500':
  *         description: Внутренняя ошибка сервера
  */

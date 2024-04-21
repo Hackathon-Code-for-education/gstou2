@@ -14,23 +14,23 @@ router.post(
 );
 router.get("/university/:id", universityController.getUniversity);
 router.get("/university", universityController.getAllUniversity);
-router.patch(
+router.post(
   "/university/:id",
   productUpload.array("image"),
   universityController.patchUniversity
 );
 router.delete("/university/:id", universityController.deleteUniversity);
 
-router.patch(
+router.post(
   "/university/addComment/:id",
   authMiddleware,
   universityController.addComment
 );
-router.patch(
+router.post(
   "/university/addUser/:id",
   universityController.addUserToUniversity
 );
-router.patch(
+router.post(
   "/university/deleteUser/:id",
   authMiddleware,
   universityController.deleteUserUniversity
