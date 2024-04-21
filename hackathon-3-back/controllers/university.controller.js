@@ -98,19 +98,10 @@ module.exports.universityController = {
   addComment: async (req, res) => {
     try {
       const { user, comment, time } = req.body;
-      const university = await University.findById(req.params.id);
-      const result = university.access.filter(
-        (item) => item.toString() === user
-      );
-
-      if (result.toString()) {
-        const data = await University.findByIdAndUpdate(req.params.id, {
-          $push: { users: { user: user, comment: comment, time: time } },
-        });
-        res.json(data.users);
-      } else {
-        res.json("Такой пользователь не найден");
-      }
+      const data = await University.findByIdAndUpdate(req.params.id, {
+        $push: { users: { user: user, comment: comment, time: time } },
+      });
+      res.json(data.users);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
