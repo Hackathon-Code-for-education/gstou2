@@ -1,11 +1,14 @@
 import { ProjectInfoBlock } from '@/entities/ProjectInfoBlock';
 import { useUniversityServiceGetUniversityById } from '@/shared/api/openApi/queries';
 import { ImageUpload } from '@/shared/ui/ImageUpload/ImageUpload';
-import { Flex, Text } from 'gentlemen-ui-kit';
+import { Flex } from 'gentlemen-ui-kit';
 import { useParams } from 'react-router-dom';
 import styles from './universityPage.module.scss';
-import { SideBar } from '@/widgets/SideBar';
-import { NewsFeed } from '@/widgets/NewsFeed';
+import { HeaderMainPage } from '@/shared/ui/HeaderMainPage/HeaderMainPage';
+import { connect } from 'socket.io-client';
+import { ChatMessage } from '@/widgets/ChatMessage/ChatMessage';
+
+export const socket = connect('http://localhost:3010');
 
 export const UniversityPage = () => {
   const { id } = useParams();
@@ -17,22 +20,17 @@ export const UniversityPage = () => {
 
   return (
     <div className={styles.universityPage}>
-      <Flex>
-        <SideBar />
-        <Flex vertical gap={12} className={styles.universityInfo}>
+      <HeaderMainPage />
+      <Flex vertical gap={12} className={styles.universityInfo}>
+        <Flex gap={12}>
           <ImageUpload
             img={data.image ? `http://localhost:3010/${data.image[0]}` : ''}
             title="Изменить фото"
           />
-          <ProjectInfoBlock data={data} title={data?.name} />
-          <NewsFeed />
+          <ProjectInfoBlock data={data} title={data?.name || ''} />
         </Flex>
-        <Flex vertical>
-          //Добавить переход по институту
-          {data.institute?.map((item) => (
-            <Text>{item.title}</Text>
-          ))}
-        </Flex>
+        {/* <NewsFeed /> */}
+        {/* <ChatMessage universityId={id as string} /> */}
       </Flex>
     </div>
   );

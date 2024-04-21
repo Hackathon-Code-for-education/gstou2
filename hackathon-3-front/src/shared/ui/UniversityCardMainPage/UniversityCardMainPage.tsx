@@ -1,19 +1,37 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { socket } from '@/widgets/ChatMessage/ChatMessage';
 
 interface UniversityCardProps {
   universityName: string;
   location: string;
   backgroundImage?: string;
+  siteUrl?: string;
+  email?: string;
+  link?: string;
+  // users?: string[];
 }
 
 export const UniversityCardMainPage: React.FC<UniversityCardProps> = ({
   universityName,
   location,
   backgroundImage,
+  siteUrl,
+  email,
+  link,
 }) => {
+  const navigate = useNavigate();
+
+  const joinRoom = () => {
+    if (link !== '') {
+      socket.emit('join_room', link);
+      navigate(`/university/${link}`);
+    }
+  };
+  
   return (
-    <CardWrapper>
+    <CardWrapper onClick={joinRoom}>
       <ImageWrapper>
         {backgroundImage ? (
           <BackgroundImage src={backgroundImage} alt="sadas" />
@@ -27,9 +45,18 @@ export const UniversityCardMainPage: React.FC<UniversityCardProps> = ({
       <CardContent>
         <UniversityName>{universityName}</UniversityName>
         <LocationWrapper>
-  
-          <Location>Город:</Location>
+          <Location>Адрес:</Location>
           <Location>{location}</Location>
+        </LocationWrapper>
+        <LocationWrapper>
+          <Location>Почта:</Location>
+          <Location>{email}</Location>
+        </LocationWrapper>
+        <LocationWrapper>
+          <Location>Сайт:</Location>
+          <Location>
+            <a href={siteUrl}>{siteUrl}</a>
+          </Location>
         </LocationWrapper>
         <Divider />
         <ApplicantsWrapper>
@@ -48,11 +75,12 @@ const Img = styled.img`
   width: 92%;
   object-fit: cover;
   object-position: center;
-  border-radius: 16px 16px 0 0 ;
+  border-radius: 16px 16px 0 0;
 `;
 
 const CardWrapper = styled.article`
-  margin-top: 56px;
+  width: 32%;
+  height: 500px;
   border-radius: 16px;
   box-shadow: 0px 12px 20px 0px rgba(124, 117, 104, 0.2);
   background-color: #fff;
@@ -60,11 +88,15 @@ const CardWrapper = styled.article`
   display: flex;
   flex-direction: column;
   padding-bottom: 16px;
+  overflow: hidden;
+  object-fit: cover;
+  cursor: pointer;
 `;
 
 const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
+  height: 250px;
   aspect-ratio: 1.47;
   overflow: hidden;
   padding: 16px;

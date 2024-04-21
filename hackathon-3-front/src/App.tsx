@@ -4,6 +4,7 @@ import '@/app/axios/axiosDefault';
 import { Redirect } from './shared/hooks/redirect';
 import { MainPage } from './pages/MainPage';
 import { UniversityPage } from './pages/UniversityPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { Panorama } from './widgets/Panorama';
 import { DormitoryPage } from './pages/DormitoryPage/ui/DormitoryPage';
 import { NotFoundPage } from './pages/NotFoundPage';
@@ -31,6 +32,14 @@ function App() {
     {
       path: '/university/:id',
       element: <UniversityPage />,
+    },
+    {
+      path: '/university/info/:id',
+      element: <UniversityPage />,
+    },
+    {
+      path: '/profile/:id',
+      element: <ProfilePage />,
     },
     {
       path: '/panorama',

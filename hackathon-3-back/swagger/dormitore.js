@@ -61,6 +61,30 @@
 
 /**
  * @swagger
+ * /dormitory/{id}:
+ *   get:
+ *     summary: Получить одно общежитие
+ *     tags: [Dormitory]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: User ID
+ *     responses:
+ *       '200':
+ *         description: A successful response, returns the requested user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Dormitory'
+ *       500:
+ *         description: Внутренняя ошибка сервера
+ */
+
+/**
+ * @swagger
  * /addDorm:
  *   post:
  *     summary: Создать новое общежитие

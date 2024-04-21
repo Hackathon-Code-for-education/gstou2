@@ -108,7 +108,7 @@ const ContactsDiv = styled.div`
   align-items: center;
   justify-content: center;
   color: #1677ff;
-  cursor: pointer
+  cursor: pointer;
   @media (max-width: 991px) {
     white-space: initial;
   }
