@@ -5,6 +5,7 @@ import { Flex, Text } from 'gentlemen-ui-kit';
 import { useParams } from 'react-router-dom';
 import styles from './universityPage.module.scss';
 import { SideBar } from '@/widgets/SideBar';
+import { NewsFeed } from '@/widgets/NewsFeed';
 
 export const UniversityPage = () => {
   const { id } = useParams();
@@ -24,6 +25,7 @@ export const UniversityPage = () => {
             title="Изменить фото"
           />
           <ProjectInfoBlock data={data} title={data?.name} />
+          <NewsFeed />
         </Flex>
         <Flex vertical>
           //Добавить переход по институту
