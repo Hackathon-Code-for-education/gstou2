@@ -20,9 +20,9 @@ export const NewsPage: FC<NewsPageProps> = (props) => {
 
 
   return (
-    <div className={styles.newsPage}>
-      <LayoutContent>
-        <Header />
+    <LayoutContent>
+      <Header />
+      <div className={styles.newsPage}>
         <div className={styles.title}>
           <span>{data?.title}</span>
         </div>
@@ -41,7 +41,7 @@ export const NewsPage: FC<NewsPageProps> = (props) => {
         </div>
 
         <div className={styles.comments}></div>
-      </LayoutContent>
-    </div>
+      </div>
+    </LayoutContent>
   );
 };

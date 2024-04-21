@@ -1,7 +1,7 @@
 import { ProjectInfoBlock } from '@/entities/ProjectInfoBlock';
 import { useUniversityServiceGetUniversityById } from '@/shared/api/openApi/queries';
 import { ImageUpload } from '@/shared/ui/ImageUpload/ImageUpload';
-import { Flex } from 'gentlemen-ui-kit';
+import { Flex, Title } from 'gentlemen-ui-kit';
 import { Link, useParams } from 'react-router-dom';
 import styles from './universityPage.module.scss';
 import { ChatMessage } from '@/widgets/ChatMessage/ChatMessage';
@@ -11,7 +11,6 @@ import { Header } from '@/widgets/Header/Header';
 export const UniversityPage = () => {
   const { id } = useParams();
   const { data, isLoading, isError } = useUniversityServiceGetUniversityById({ id: id as string });
-console.log(data);
 
   if (isLoading || isError || !data) {
     return <></>;
@@ -28,7 +27,9 @@ console.log(data);
           />
           <ProjectInfoBlock data={data} title={data?.name || ''} />
         </Flex>
+        <div style={{fontSize: 30, margin: '15px 0 10px 0'}}>Новости университета</div>
         <NewsFeed />
+        <div style={{fontSize: 30, margin: '15px 0 10px 0'}}>Отзывы об университете</div>
         <ChatMessage universityId={id as string} />
       </Flex>
     </div>

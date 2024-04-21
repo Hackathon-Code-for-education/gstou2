@@ -84,7 +84,6 @@ const CardWrapper = styled.article`
   border-radius: 16px;
   box-shadow: 0px 12px 20px 0px rgba(124, 117, 104, 0.2);
   background-color: #fff;
-  width: 350px;
   display: flex;
   flex-direction: column;
   padding-bottom: 16px;

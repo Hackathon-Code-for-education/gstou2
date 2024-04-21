@@ -1,4 +1,7 @@
 .cards {
   width: fit-content;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
   margin: auto auto 50px;
 }

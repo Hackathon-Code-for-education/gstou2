@@ -14,7 +14,7 @@ interface NewsCardProps {
 
 export const NewsCard: React.FC<NewsCardProps> = (props) => (
   <Card
-    style={{ width: 300 }}
+  style={{width: '400px', gap: 20}}
     cover={<img alt="example" src={props.img ? `http://localhost:3010/${props.img[0]}` : ''} />}
     actions={[
       <EditOutlined key="edit" />,
