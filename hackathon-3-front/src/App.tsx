@@ -39,6 +39,7 @@ function App() {
       path: '/dormitory',
       element: <DormitoryPage />
     },
+    {
       path: '*',
       element: <NotFoundPage />
     }
