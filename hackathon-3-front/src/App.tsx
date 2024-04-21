@@ -8,6 +8,7 @@ import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { Panorama } from './widgets/Panorama';
 import { DormitoryPage } from './pages/DormitoryPage/ui/DormitoryPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { PanoramaPage } from './pages/PanoramaPage';
 
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
     },
     {
       path: '/panorama',
-      element: <Panorama />
+      element: <PanoramaPage />
     },
     {
       path: '/dormitory',
