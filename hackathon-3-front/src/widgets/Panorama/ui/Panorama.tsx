@@ -1,5 +1,5 @@
 import { ReactPhotoSphereViewer } from 'react-photo-sphere-viewer';
-import image from '../image/panorama.jpg'
+import image from '../image/panorama2.jpg'
 
 export function Panorama() {
   return (
