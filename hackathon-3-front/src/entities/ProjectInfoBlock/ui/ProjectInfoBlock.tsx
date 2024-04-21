@@ -41,6 +41,7 @@ export const ProjectInfoBlock: FC<ProjectInfoBlockProps> = ({ data, title }) => 
           propertyValue={data.selectionCommittee?.phone}
         />
         <Link to={`/dormitore/${data?.dormitory?._id}`}>Перейти к общежитию</Link>
+        <Link to='/panorama'>Осмотреть главный корпус</Link>
       </Flex>
     </Flex>
   );
