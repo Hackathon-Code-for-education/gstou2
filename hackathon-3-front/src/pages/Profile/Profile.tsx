@@ -54,7 +54,7 @@ export const Profile: React.FC = () => {
         <Layout style={{ padding: '0 24px 24px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>Главная</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
+            <Breadcrumb.Item>Новости</Breadcrumb.Item>
           </Breadcrumb>
           <Content
             style={{
