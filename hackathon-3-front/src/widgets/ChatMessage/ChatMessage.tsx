@@ -16,7 +16,6 @@ import { parseJwt } from '@/shared/hooks/parseJWT';
 // import Disk from "../Disk/Disk";
 // import Web from "../../pages/Web/Web";
 import { connect } from 'socket.io-client';
-import { University } from '@/shared/api/openApi/requests';
 export const socket = connect('http://localhost:3010');
 
 export const ChatMessage = ({ universityId }: { universityId: string }) => {
