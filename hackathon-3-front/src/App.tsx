@@ -8,6 +8,7 @@ import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { Panorama } from './widgets/Panorama';
 import { DormitoryPage } from './pages/DormitoryPage/ui/DormitoryPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import AddNews from './widgets/AddNews/ui/AddNews';
 import { PanoramaPage } from './pages/PanoramaPage';
 
 
@@ -48,6 +49,10 @@ function App() {
     {
       path: '/dormitory',
       element: <DormitoryPage />
+    },
+    {
+      path: '/addNews',
+      element: <AddNews />
     },
     {
       path: '*',
