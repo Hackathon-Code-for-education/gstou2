@@ -6,6 +6,8 @@ import { UniversityCardsMainPage } from '@/shared/ui/UniversityCardsMainPage/Uni
 import { WeAreHelpingWith } from '@/shared/ui/WeAreHelpingWith/WeAreHelpingWith';
 import styles from './mainPage.module.scss';
 import { useUniversityServiceGetUniversity } from '@/shared/api/openApi/queries';
+import { Panorama } from '@/widgets/Panorama';
+
 
 export const MainPage = () => {
   const { data } = useUniversityServiceGetUniversity();
@@ -26,6 +28,10 @@ export const MainPage = () => {
       ))} */}
 
       {/* сделай внутри блока UniversityCardsMainPage */}
+      <div style={{width: '1000px', margin: '0 auto', padding: '50px 50px'}}>
+          <Panorama />
+      </div>
+        
     </div>
   );
 };
