@@ -5,6 +5,7 @@ import { Redirect } from './shared/hooks/redirect';
 import { MainPage } from './pages/MainPage';
 import { UniversityPage } from './pages/UniversityPage';
 import { Panorama } from './widgets/Panorama';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
   const routes = createBrowserRouter([
@@ -32,6 +33,10 @@ function App() {
       path: '/panorama',
       element: <Panorama />
     },
+    {
+      path: '*',
+      element: <NotFoundPage />
+    }
     // {
     //   path: "/my_accaunt",
     //   element: <ProfilePage />,
