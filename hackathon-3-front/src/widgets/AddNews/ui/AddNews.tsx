@@ -55,9 +55,9 @@ const AddNews = () => {
           onChange={handleDescriptionChange}
         />
         <Upload onChange={handleFileChange}>
-          <Button icon={<UploadOutlined />}>Click to Upload</Button>
+          <Button icon={<UploadOutlined />}>Добавить фото</Button>
         </Upload>
-        <Button onClick={handleSubmit}>Submit</Button>
+        <Button onClick={handleSubmit}>Добавить новость к университету</Button>
       </Flex>
     </div>
   );

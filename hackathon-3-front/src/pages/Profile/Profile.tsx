@@ -3,6 +3,7 @@ import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import { Header } from '@/widgets/Header/Header'
+import AddNews from '@/widgets/AddNews/ui/AddNews';
 
 
 
@@ -22,7 +23,7 @@ export const Profile: React.FC = () => {
       return {
         key: `sub${key}`,
         icon: React.createElement(icon),
-        label: `subnav ${key}`,
+        label: `Новости`,
 
         children: new Array(4).fill(null).map((_, j) => {
           const subKey = index * 4 + j + 1;
@@ -64,7 +65,7 @@ export const Profile: React.FC = () => {
               borderRadius: borderRadiusLG,
             }}
           >
-            Content
+            <AddNews />
           </Content>
         </Layout>
       </Layout>
