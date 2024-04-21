@@ -10,6 +10,7 @@ import { DormitoryPage } from './pages/DormitoryPage/ui/DormitoryPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import AddNews from './widgets/AddNews/ui/AddNews';
 import { PanoramaPage } from './pages/PanoramaPage';
+import { Profile } from './pages/Profile/Profile';
 import { NewsPage } from './pages/NewsPage';
 
 
@@ -35,10 +36,10 @@ function App() {
       path: '/university/:id',
       element: <UniversityPage />,
     },
-    {
-      path: '/university/info/:id',
-      element: <UniversityPage />,
-    },
+    // {
+    //   path: '/university/info/:id',
+    //   element: <UniversityPage />,
+    // },
     {
       path: '/profile/:id',
       element: <ProfilePage />,
@@ -62,7 +63,7 @@ function App() {
     {
       path: '/newsPage/:id',
       element: <NewsPage />
-    }
+    },
 
     // {
     //   path: "/my_accaunt",
@@ -78,6 +79,15 @@ function App() {
     //     },
     //   ],
     // },
+
+    // new
+
+    {
+      path: '/newProfile',
+      element: <Profile />
+    }
+
+
   ]);
 
   return <RouterProvider router={routes} />;

@@ -5,7 +5,7 @@ export const Redirect = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem('token');
-    navigate(token ? '/main' : '/signIn');
+    navigate(token ? '/newProfile' : '/signIn');
   }, []);
   return <div></div>;
 };

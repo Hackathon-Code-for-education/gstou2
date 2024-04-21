@@ -1,16 +1,20 @@
 import { useDormitoryServiceGetDormitoreById } from "@/shared/api/openApi/queries";
+import { Header } from "@/widgets/Header/Header";
 import * as React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 export const DormitoryPage = () => {
 
     const { id } = useParams();
     const { data, isLoading } = useDormitoryServiceGetDormitoreById({ id: id as string })
-    console.log(data);
+
+    const Navigate = useNavigate()
 
 
     return (
+      <>
+      <Header />
         <Div>
             <Div3>{data?.title}</Div3>
             <Div4>
@@ -30,7 +34,7 @@ export const DormitoryPage = () => {
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error odio tempore molestiae exercitationem odit voluptatem consequuntur eveniet, consequatur recusandae voluptas obcaecati est. Sapiente nisi, nam non dolor repellat possimus aliquid?.
                             </Div13>
                             <Div14>
-                                <Div15>View project</Div15>
+                                <Div15 onClick={() => Navigate('/panorama')}>Осмотреть общежитие в 3D</Div15>
                                 <Img3
                                     loading="lazy"
                                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/283c8ac47dd9b75edfd0cdd5097f87e8d3cc8f4090d6b2c32eb1c12fa412722c?"
@@ -47,6 +51,8 @@ export const DormitoryPage = () => {
                 </Div5>
             </Div4>
         </Div>
+      </>
+      
     );
 }
 

@@ -9,6 +9,7 @@ import { ProjectInfo } from './ProjectInfoItem';
 
 import styles from './projectInfo.module.scss';
 import { University } from '@/shared/api/openApi/requests';
+import { Link, Navigate } from 'react-router-dom';
 
 export interface ILabels {
   key: string;
@@ -39,6 +40,7 @@ export const ProjectInfoBlock: FC<ProjectInfoBlockProps> = ({ data, title }) => 
           propertyName="Рабочий номер приемной комиссии"
           propertyValue={data.selectionCommittee?.phone}
         />
+        <Link to={`/dormitore/${data?.dormitory?._id}`}>Перейти к общежитию</Link>
       </Flex>
     </Flex>
   );

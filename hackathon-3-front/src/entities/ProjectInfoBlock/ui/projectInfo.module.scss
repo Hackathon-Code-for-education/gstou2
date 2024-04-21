@@ -2,6 +2,7 @@
   width: 100%;
   padding: 20px;
 }
+
 .header {
   width: 100%;
   display: flex;
@@ -13,6 +14,7 @@
     }
   }
 }
+
 .subStatus {
   font-size: 14px;
   line-height: 22px;
@@ -23,6 +25,7 @@
   border: 0.5px solid rgba(97, 97, 122, 0.24);
   border-radius: 6px;
 }
+
 .editPencil {
   cursor: pointer;
 }

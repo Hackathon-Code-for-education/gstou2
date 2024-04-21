@@ -4,9 +4,9 @@ import { ImageUpload } from '@/shared/ui/ImageUpload/ImageUpload';
 import { Flex } from 'gentlemen-ui-kit';
 import { Link, useParams } from 'react-router-dom';
 import styles from './universityPage.module.scss';
-import { HeaderMainPage } from '@/shared/ui/HeaderMainPage/HeaderMainPage';
 import { ChatMessage } from '@/widgets/ChatMessage/ChatMessage';
 import { NewsFeed } from '@/widgets/NewsFeed';
+import { Header } from '@/widgets/Header/Header';
 
 export const UniversityPage = () => {
   const { id } = useParams();
@@ -19,7 +19,7 @@ console.log(data);
 
   return (
     <div className={styles.universityPage}>
-      <HeaderMainPage />
+      <Header />
       <Flex vertical gap={12} className={styles.universityInfo}>
         <Flex gap={12}>
           <ImageUpload
@@ -28,14 +28,8 @@ console.log(data);
           />
           <ProjectInfoBlock data={data} title={data?.name || ''} />
         </Flex>
-
-        <Link to={`/dormitore/${data?.dormitory?._id}`}>Перейти к общежитию</Link>
-        {/* <NewsFeed /> */}
-        {/* <ChatMessage universityId={id as string} /> */}
-
-        <ChatMessage universityId={id as string} />
         <NewsFeed />
-
+        <ChatMessage universityId={id as string} />
       </Flex>
     </div>
   );
