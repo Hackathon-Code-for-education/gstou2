@@ -33,6 +33,15 @@ module.exports.dormitoreController = {
         } catch (error) {
             res.json(error);
         }
+    },
+
+    getOneDormitory: async (req, res) => {
+        try {
+            const data = await Dormitore.findById(req.params.id);
+            res.json(data);
+        } catch (error) {
+            res.json(error);
+        }
     }
 
 }
