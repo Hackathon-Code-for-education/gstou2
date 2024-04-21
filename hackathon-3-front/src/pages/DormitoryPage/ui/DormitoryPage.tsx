@@ -4,29 +4,11 @@ import styled from "styled-components";
 export const DormitoryPage = () => {
   return (
     <Div>
-      <Div2>Other Projects</Div2>
       <Div3>Other Projects</Div3>
       <Div4>
         <Div5>
           <Column>
             <Div6>
-              <Div7>
-                <Div8>
-                  <Img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/2d2132178c248dcd5b16de50f4ec5967302bf521875f21928cd8a020c902d6b3?"
-                  />
-                  <Div9>CRM</Div9>
-                </Div8>
-                <Div10>
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/2d2132178c248dcd5b16de50f4ec5967302bf521875f21928cd8a020c902d6b3?"
-                  />
-                  <Div11>Healthcare</Div11>
-                </Div10>
-              </Div7>
-              <Div12>Meda</Div12>
               <Div13>
                 Interactive & educational application with indoor navigation for
                 a dental clinic. Using QR Marke’s customer can get information
@@ -51,10 +33,6 @@ export const DormitoryPage = () => {
           </Column2>
         </Div5>
       </Div4>
-      <Img5
-        loading="lazy"
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/37ded0e5f8c12d6cfa121cf11e7f27299b8183d77f9cf9b814225ec73009fc59?"
-      />
     </Div>
   );
 }
@@ -65,22 +43,9 @@ const Div = styled.div`
   padding: 0 20px;
 `;
 
-const Div2 = styled.div`
-  color: var(--White, #fff);
-  width: 100%;
-  font: 700 52px RoadRadio, sans-serif;
-  @media (max-width: 991px) {
-    max-width: 100%;
-    font-size: 40px;
-  }
-`;
-
 const Div3 = styled.div`
   -webkit-text-stroke-width: 1;
   -webkit-text-stroke-color: #1a1a1a;
-  border-color: rgba(26, 26, 26, 1);
-  border-style: solid;
-  border-width: 1px;
   margin-top: 30px;
   width: 100%;
   font: 700 100px RoadRadio, sans-serif;
@@ -237,7 +202,7 @@ const Column2 = styled.div`
   width: 59%;
   margin-left: 20px;
   @media (max-width: 991px) {
-    width: 100%;
+    width: 90%;
   }
 `;
 

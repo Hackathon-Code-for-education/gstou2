@@ -5,18 +5,35 @@ const {
 } = require("../controllers/university.controller");
 const createMulter = require("../middleware/image.middleware");
 const productUpload = createMulter("university");
+const authMiddleware = require("../middleware/auth.middleware");
 
 router.post(
-  "/university",
+  "/university/:id",
   productUpload.array("image"),
-  universityController.registerUniversity
+  universityController.createUniversity
 );
 router.get("/university/:id", universityController.getUniversity);
 router.get("/university", universityController.getAllUniversity);
-router.patch(
+router.post(
   "/university/:id",
   productUpload.array("image"),
   universityController.patchUniversity
+);
+router.delete("/university/:id", universityController.deleteUniversity);
+
+router.post(
+  "/university/addComment/:id",
+  authMiddleware,
+  universityController.addComment
+);
+router.post(
+  "/university/addUser/:id",
+  universityController.addUserToUniversity
+);
+router.post(
+  "/university/deleteUser/:id",
+  authMiddleware,
+  universityController.deleteUserUniversity
 );
 
 module.exports = router;
