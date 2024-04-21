@@ -1,19 +1,28 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface UniversityCardProps {
   universityName: string;
   location: string;
   backgroundImage?: string;
+  siteUrl?: string;
+  email?: string;
+  link?: string;
+  // users?: string[];
 }
 
 export const UniversityCardMainPage: React.FC<UniversityCardProps> = ({
   universityName,
   location,
   backgroundImage,
+  siteUrl,
+  email,
+  link,
 }) => {
+  const navigate = useNavigate();
   return (
-    <CardWrapper>
+    <CardWrapper onClick={() => navigate(`/university/${link}`)}>
       <ImageWrapper>
         {backgroundImage ? (
           <BackgroundImage src={backgroundImage} alt="sadas" />
@@ -27,8 +36,18 @@ export const UniversityCardMainPage: React.FC<UniversityCardProps> = ({
       <CardContent>
         <UniversityName>{universityName}</UniversityName>
         <LocationWrapper>
-          <Location>Город:</Location>
+          <Location>Адрес:</Location>
           <Location>{location}</Location>
+        </LocationWrapper>
+        <LocationWrapper>
+          <Location>Почта:</Location>
+          <Location>{email}</Location>
+        </LocationWrapper>
+        <LocationWrapper>
+          <Location>Сайт:</Location>
+          <Location>
+            <a href={siteUrl}>{siteUrl}</a>
+          </Location>
         </LocationWrapper>
         <Divider />
         <ApplicantsWrapper>
@@ -47,20 +66,22 @@ const Img = styled.img`
   width: 92%;
   object-fit: cover;
   object-position: center;
+  border-radius: 16px 16px 0 0;
 `;
 
 const CardWrapper = styled.article`
-  width: 350px;
+  width: 32%;
   height: 500px;
   border-radius: 16px;
   box-shadow: 0px 12px 20px 0px rgba(124, 117, 104, 0.2);
   background-color: #fff;
-  max-width: 354px;
+  width: 350px;
   display: flex;
   flex-direction: column;
   padding-bottom: 16px;
   overflow: hidden;
   object-fit: cover;
+  cursor: pointer;
 `;
 
 const ImageWrapper = styled.div`

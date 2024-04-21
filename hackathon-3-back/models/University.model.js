@@ -9,7 +9,7 @@ const universitySchema = mongoose.Schema({
   news: [
     {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: "UniversityNew",
+      ref: "UniversityNews",
     },
   ],
   institute: [

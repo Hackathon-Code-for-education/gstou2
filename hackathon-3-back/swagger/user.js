@@ -2,93 +2,46 @@
  * @swagger
  * tags:
  *   name: User
- *   description: Операции, связанные с управлением пользователями
- */
-
-/**
- * @swagger
- * components:
- *   schemas:
- *     User:
- *       type: object
- *       properties:
- *         _id:
- *           type: string
- *           description: Уникальный идентификатор пользователя
- *         name:
- *           type: string
- *           description: Имя пользователя
- *         nikname:
- *           type: string
- *           description: Никнейм пользователя
- *         login:
- *           type: string
- *           description: Логин пользователя
- *         password:
- *           type: string
- *           description: Хэш пароля пользователя
- *         role:
- *           type: string
- *           description: Роль пользователя
- *         photo:
- *           type: string
- *           description: Ссылка на фотографию пользователя
- *         institute:
- *           type: string
- *           description: Идентификатор института пользователя
- *         raiting:
- *           type: number
- *           description: Рейтинг пользователя
- *         showName:
- *           type: boolean
- *           description: Флаг отображения имени пользователя
- *         passport:
- *           type: string
- *           description: Паспортные данные пользователя
- *         myMessage:
- *           type: array
- *           items:
- *             type: string
- *           description: Массив сообщений пользователя
- *         favorite:
- *           type: array
- *           items:
- *             type: string
- *           description: Массив избранных институтов пользователя
- *       required:
- *         - name
- *         - login
- *         - password
+ *   description: Operations related to users
  */
 
 /**
  * @swagger
  * /user:
  *   post:
- *     summary: Регистрация нового пользователя
+ *     summary: Register a new user
  *     tags: [User]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/User'
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               login:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *             required:
+ *               - name
+ *               - login
+ *               - password
  *     responses:
- *       200:
- *         description: Новый пользователь успешно зарегистрирован
+ *       '200':
+ *         description: A successful response, returns the registered user
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
- *       500:
- *         description: Внутренняя ошибка сервера
  */
 
 /**
  * @swagger
  * /login:
  *   post:
- *     summary: Вход под существующим пользователем
+ *     summary: Log in with existing credentials
  *     tags: [User]
  *     requestBody:
  *       required: true
@@ -105,8 +58,8 @@
  *               - login
  *               - password
  *     responses:
- *       200:
- *         description: Пользователь успешно вошел в систему
+ *       '200':
+ *         description: A successful response, returns a JWT token
  *         content:
  *           application/json:
  *             schema:
@@ -114,53 +67,57 @@
  *               properties:
  *                 token:
  *                   type: string
- *                   description: JWT токен для аутентификации
  *                 login:
  *                   type: string
- *                   description: Идентификатор пользователя
- *       401:
- *         description: Неверный логин или пароль
- *       500:
- *         description: Внутренняя ошибка сервера
  */
 
 /**
  * @swagger
  * /user/{id}:
  *   get:
- *     summary: Получить одного пользователя
+ *     summary: Get user by ID
  *     tags: [User]
  *     parameters:
  *       - in: path
  *         name: id
- *         required: true
- *         description: Идентификатор пользователя
  *         schema:
  *           type: string
+ *         required: true
+ *         description: User ID
  *     responses:
- *       200:
- *         description: Возвращает одного пользователя
+ *       '200':
+ *         description: A successful response, returns the requested user
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
+ */
+
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: Получить информацию о всех пользователях
+ *     tags: [User]
+ *     responses:
+ *       200:
+ *         description: Информация о всех пользователях успешно получена
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
  *       500:
  *         description: Внутренняя ошибка сервера
  */
 
 /**
  * @swagger
- * /user/{id}:
- *   patch:
- *     summary: Обновить данные пользователя
+ * /patch:
+ *   patch/{id}:
+ *     summary: Update user information
  *     tags: [User]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         description: Идентификатор пользователя
- *         schema:
- *           type: string
  *     requestBody:
  *       required: true
  *       content:
@@ -168,14 +125,52 @@
  *           schema:
  *             $ref: '#/components/schemas/User'
  *     responses:
- *       200:
- *         description: Данные пользователя успешно обновлены
+ *       '200':
+ *         description: A successful response, returns the updated user
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
- *       404:
- *         description: Пользователь не найден
- *       500:
- *         description: Внутренняя ошибка сервера
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *         nikname:
+ *           type: string
+ *         login:
+ *           type: string
+ *         password:
+ *           type: string
+ *         role:
+ *           type: string
+ *         photo:
+ *           type: string
+ *         institute:
+ *           type: string
+ *         raiting:
+ *           type: number
+ *         showName:
+ *           type: boolean
+ *         passport:
+ *           type: string
+ *         myMessage:
+ *           type: array
+ *           items:
+ *             type: string
+ *         favorite:
+ *           type: array
+ *           items:
+ *             type: string
+ *     ErrorResponse:
+ *       type: object
+ *       properties:
+ *         message:
+ *           type: string
  */

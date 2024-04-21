@@ -22,7 +22,7 @@ interface ProjectInfoBlockProps {
 
 export const ProjectInfoBlock: FC<ProjectInfoBlockProps> = ({ data, title }) => {
   return (
-    <Flex vertical gap={16}>
+    <Flex vertical gap={16} className={styles.projectInfoBlock}>
       <div className={styles.header}>
         <Flex align="center" gap={16}>
           <Title level={3}>{title}</Title>

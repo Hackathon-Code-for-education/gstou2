@@ -46,6 +46,10 @@ module.exports.userController = {
     const data = await User.findById(req.params.id);
     res.json(data);
   },
+  getUsers: async (req, res) => {
+    const data = await User.find();
+    res.json(data);
+  },
 
   patchUser: async (req, res) => {
     const {
