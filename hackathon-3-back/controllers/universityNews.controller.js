@@ -22,7 +22,6 @@ module.exports.universityNewsController = {
    createNews: async (req, res) => {
       try {
          const { title, description } = req.body;
-
          const photo = [];
 
          if (req.files && req.files.length > 0) {
