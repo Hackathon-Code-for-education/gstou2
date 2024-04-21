@@ -7,6 +7,7 @@ import { UniversityPage } from './pages/UniversityPage';
 import { Panorama } from './widgets/Panorama';
 import { DormitoryPage } from './pages/DormitoryPage/ui/DormitoryPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import AddNews from './widgets/AddNews/ui/AddNews';
 
 
 function App() {
@@ -38,6 +39,10 @@ function App() {
     {
       path: '/dormitory',
       element: <DormitoryPage />
+    },
+    {
+      path: '/addNews',
+      element: <AddNews />
     },
     {
       path: '*',
