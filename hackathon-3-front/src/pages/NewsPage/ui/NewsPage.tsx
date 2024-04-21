@@ -24,7 +24,6 @@ export const NewsPage: FC<NewsPageProps> = (props) => {
         </div>
         <div className={styles.info}>
           <div className={styles.newsImg}>
-            {/* {data.image?.length > 1 : "" : ""} */}
             <img src={data.image ? `http://localhost:3010/${data.image[0]}` : ''} alt="" />
           </div>
           <div className={styles.descriptions}><span>{data?.description}</span></div>
