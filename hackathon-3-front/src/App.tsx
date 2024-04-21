@@ -6,7 +6,9 @@ import { MainPage } from './pages/MainPage';
 import { UniversityPage } from './pages/UniversityPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { Panorama } from './widgets/Panorama';
+import { DormitoryPage } from './pages/DormitoryPage/ui/DormitoryPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+
 
 function App() {
   const routes = createBrowserRouter([
@@ -43,9 +45,14 @@ function App() {
       element: <Panorama />
     },
     {
+      path: '/dormitory',
+      element: <DormitoryPage />
+    },
+    {
       path: '*',
       element: <NotFoundPage />
     }
+
     // {
     //   path: "/my_accaunt",
     //   element: <ProfilePage />,
